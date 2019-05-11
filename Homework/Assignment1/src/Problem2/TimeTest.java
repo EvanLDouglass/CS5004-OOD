@@ -31,6 +31,14 @@ public class TimeTest {
     }
 
     @Test
+    public void equals() {
+        Time newTest = new Time();
+        assertTrue(newTest.equals(t1));
+
+        assertTrue(t2.equals(new Time(1, 30, 59)));
+    }
+
+    @Test
     public void getHour() {
         assertEquals(0, t1.getHour());
         assertEquals(1, t2.getHour());

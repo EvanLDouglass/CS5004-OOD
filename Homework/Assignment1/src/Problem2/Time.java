@@ -1,5 +1,7 @@
 package Problem2;
 
+import java.util.Objects;
+
 /**
  * Class Time represents a time of day in 24 hour increments, from 00:00:00 to 23:59:59.
  * Time does not distinguish days. Therefore a duration between two Times cannot be more
@@ -99,5 +101,24 @@ public class Time {
      */
     public void setSec(int second) {
         this.second = validateMinSec(second);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Time time = (Time) o;
+        return hour == time.hour &&
+                minute == time.minute &&
+                second == time.second;
+    }
+
+    @Override
+    public String toString() {
+        return "Time{" +
+                "hour=" + hour +
+                ", minute=" + minute +
+                ", second=" + second +
+                '}';
     }
 }
