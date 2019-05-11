@@ -1,6 +1,15 @@
+<<<<<<< HEAD:.gitignore
 # folders
 .idea/
 out/
 
 # file types
 *.iml
+=======
+# folders
+.idea/
+out/
+
+# file types
+*.iml
+>>>>>>> f8ce990a40865d43ff5813424a7486572dac9bd7:.gitignore
