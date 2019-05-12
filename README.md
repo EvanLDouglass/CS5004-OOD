@@ -1,5 +1,5 @@
 # CS5004: Object Oriented Design and Analysis
-## Student: Evan Douglass
+## Evan Douglass
 
 This repository is divided into two directories, Assignments and Labs.
 'Assignments' contains homework assignments and 'Labs' contains lab work.
