@@ -4,6 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * Tests for class Swimmer.
+ * @author evandouglass
+ */
 public class SwimmerTest {
     private Swimmer swimmer1;
     private Swimmer swimmer2;

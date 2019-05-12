@@ -3,6 +3,8 @@ package Problem1;
 /**
  * Class Swimmer contains information about a swimmer. This class is
  * used as a part of Problem 1.
+ *
+ * @author evandouglass
  */
 public class Swimmer {
     private String firstName;

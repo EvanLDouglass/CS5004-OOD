@@ -3,6 +3,7 @@ package Problem3;
 /**
  * Class Amount represents an amount in a bank account.
  * The value of the account cannot be negative.
+ *
  * @author evandouglass
  */
 public class Amount {

@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Tests for class Bicyclist.
+ * @author evandouglass
+ */
 public class BicyclistTest {
     private Bicyclist b;
     private Time start;

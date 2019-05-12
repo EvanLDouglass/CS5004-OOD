@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Tests for class Time.
+ * @author evandouglass
+ */
 public class TimeTest {
     private Time t1;
     private Time t2;

@@ -2,6 +2,8 @@ package Problem1;
 
 /**
  * Class SwimTimes represents a swimmer's best time for several different kinds of races.
+ *
+ * @author evandouglass
  */
 public class SwimTimes {
     private double best50mBackstrokeTime;

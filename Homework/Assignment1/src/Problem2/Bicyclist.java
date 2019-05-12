@@ -8,6 +8,8 @@ package Problem2;
  *
  * Note that once the Bicyclist first and last name has been set,
  * they cannot be changed.
+ *
+ * @author evandouglass
  */
 public class Bicyclist {
     private String firstName;

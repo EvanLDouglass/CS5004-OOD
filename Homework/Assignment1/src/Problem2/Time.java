@@ -6,6 +6,8 @@ import java.util.Objects;
  * Class Time represents a time of day in 24 hour increments, from 00:00:00 to 23:59:59.
  * Time does not distinguish days. Therefore a duration between two Times cannot be more
  * than 23hrs 59mins, 59secs.
+ *
+ * @author evandouglass
  */
 public class Time {
     private int hour;

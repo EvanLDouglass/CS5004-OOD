@@ -5,9 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/*
+/**
+ * Tests for class SwimTimes.
+ *
  * Only non-negative numbers are tested for get methods in this class because we have not
  * yet covered testing with error handling.
+ *
+ * @author evandouglass
  */
 public class SwimTimesTest {
     private SwimTimes timesMain;

@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Tests for class Amount.
+ * @author evandouglass
+ */
 public class AmountTest {
 
     @Test
