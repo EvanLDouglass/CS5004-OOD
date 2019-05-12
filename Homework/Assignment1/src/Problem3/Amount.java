@@ -42,14 +42,23 @@ public class Amount {
     }
 
     /* ===== Methods ===== */
-    // TODO: Finish Implementations
+
     /**
      * Adds the given amount and returns the value without side affects.
      * @param other an amount to add
      * @return the current account value + the other account value
      */
     public Amount add(Amount other) {
-        return new Amount();
+        // Get total cents in each amount and sum
+        int thisCents, otherCents;
+        thisCents = this.cents + (this.dollars * 100);
+        otherCents = other.getCents() + (other.getDollars() * 100);
+        int totalCents = thisCents + otherCents;
+
+        // divide back into dollars and cents;
+        int cents = totalCents % 100;
+        int dollars = totalCents / 100;
+        return new Amount(dollars, cents);
     }
 
     /**
@@ -58,17 +67,28 @@ public class Amount {
      * @return the current account value - the other account value
      */
     public Amount subtract(Amount other) {
-        return new Amount();
+        // Get total cents in each amount and subtract
+        int thisCents, otherCents;
+        thisCents = this.cents + (this.dollars * 100);
+        otherCents = other.getCents() + (other.getDollars() * 100);
+        int totalCents = thisCents - otherCents;
+
+        // Check if other was more than starting amount
+        if (totalCents < 0) {
+            totalCents = 0;
+        }
+
+        // Divide back to dollars and cents
+        int cents = totalCents % 100;
+        int dollars = totalCents / 100;
+        return new Amount(dollars, cents);
     }
 
     /* ===== Overrides ===== */
 
     @Override
     public String toString() {
-        return "Amount{" +
-                "$" + dollars +
-                "." + cents +
-                '}';
+        return String.format("Amount{$%d.%02d}", this.dollars, this.cents);
     }
 
     @Override
@@ -114,6 +134,13 @@ public class Amount {
      * @param cents the new cents value
      */
     public void setCents(int cents) {
-        this.cents = cents;
+        if (cents < 0 ) {
+            this.cents = 0;
+        } else if (cents > 99) {
+            this.cents = cents % 100;
+            this.dollars += (cents / 100);
+        } else {
+            this.cents = cents;
+        }
     }
 }
