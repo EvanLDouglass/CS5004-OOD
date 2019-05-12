@@ -98,4 +98,37 @@ public class TimeTest {
         t2.setSec(-999);
         assertEquals(21, t2.getSec());
     }
+
+    @Test
+    public void toString1() {
+        t1 = new Time(23, 44, 12);
+        t2 = new Time();
+        String expected1 = "Time{hour=23, minute=44, second=12}";
+        String expected2 = "Time{hour=0, minute=0, second=0}";
+
+        assertEquals(expected1, t1.toString());
+        assertEquals(expected2, t2.toString());
+    }
+
+    @Test
+    public void equals1() {
+        t1 = new Time();
+        t2 = new Time();
+        assertEquals(t1, t2);
+
+        t1.setHour(22);
+        assertNotEquals(t1, t2);
+        t2.setHour(22);
+        assertEquals(t1, t2);
+
+        t1.setMin(22);
+        assertNotEquals(t1, t2);
+        t2.setMin(22);
+        assertEquals(t1, t2);
+
+        t1.setSec(22);
+        assertNotEquals(t1, t2);
+        t2.setSec(22);
+        assertEquals(t1, t2);
+    }
 }
