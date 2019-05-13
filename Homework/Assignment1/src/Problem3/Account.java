@@ -39,9 +39,11 @@ public class Account {
     /**
      * deposit adds the given amount into the current account balance
      * @param depositAmount the amount to deposit
+     * @return a new Account with the new balance
      */
-    public void deposit(Amount depositAmount) {
-        this.balance = this.balance.add(depositAmount);
+    public Account deposit(Amount depositAmount) {
+        Amount amt = this.balance.add(depositAmount);
+        return new Account(this.acctHolderFirstName, this.getAcctHolderLastName, amt);
     }
 
     /**
@@ -49,9 +51,11 @@ public class Account {
      * If the withdraw amount is greater than the account balance, the balance will go
      * to zero.
      * @param withdrawAmount the amount to withdraw
+     * @return a new Account with the new balance
      */
-    public void withdraw(Amount withdrawAmount) {
-        this.balance = this.balance.subtract(withdrawAmount);
+    public Account withdraw(Amount withdrawAmount) {
+        Amount amt = this.balance.subtract(withdrawAmount);
+        return new Account(this.acctHolderFirstName, this.getAcctHolderLastName, amt);
     }
 
     /* ===== Overrides ===== */

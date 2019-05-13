@@ -12,41 +12,51 @@ public class AccountTest {
 
     @Test
     public void deposit() {
+        // Main account
         Account acct = new Account("Evan", "Douglass");
+        acct = acct.deposit(new Amount(100, 50));
+        // Equality test account
         Amount amtTest = new Amount(100, 50);
-        acct.deposit(new Amount(100, 50));
-        assertEquals(amtTest, acct.getBalance());
+        Account acctTest = new Account("Evan", "Douglass", amtTest);
+        assertEquals(acctTest, acct);
 
-        amtTest.setDollars(200);
-        acct.deposit(new Amount(100, 0));
-        assertEquals(amtTest, acct.getBalance());
+        acctTest.setBalance(new Amount(200, 50));
+        acct = acct.deposit(new Amount(100, 0));
+        assertEquals(acctTest, acct);
 
         // deposit nothing
-        acct.deposit(new Amount());
-        assertEquals(amtTest, acct.getBalance());
+        acct = acct.deposit(new Amount());
+        assertEquals(acctTest, acct);
     }
 
     @Test
     public void withdraw() {
+        // Main account
         Account acct = new Account("Evan", "Douglass", new Amount(500, 0));
-        acct.withdraw(new Amount(100, 0));
+        acct = acct.withdraw(new Amount(100, 0));
+
+        // Equality test account
         Amount amtTest = new Amount(400, 0);
-        assertEquals(amtTest, acct.getBalance());
+        Account acctTest = new Account("Evan", "Douglass", amtTest);
+        assertEquals(acctTest, acct);
 
-        acct.withdraw(new Amount(0, 50));
+        acct = acct.withdraw(new Amount(0, 50));
         amtTest = new Amount(399, 50);
-        assertEquals(amtTest, acct.getBalance());
+        acctTest.setBalance(amtTest);
+        assertEquals(acctTest, acct);
 
-        acct.withdraw(new Amount(50, 50));
+        acct = acct.withdraw(new Amount(50, 50));
         amtTest = new Amount(349, 0);
-        assertEquals(amtTest, acct.getBalance());
+        acctTest.setBalance(amtTest);
+        assertEquals(acctTest, acct);
 
         // Test overdraw
-        acct.withdraw(new Amount(1000, 0));
+        acct = acct.withdraw(new Amount(1000, 0));
         amtTest = new Amount();
-        assertEquals(amtTest, acct.getBalance());
-        acct.withdraw(new Amount(0, 1));
-        assertEquals(amtTest, acct.getBalance());
+        acctTest.setBalance(amtTest);
+        assertEquals(acctTest, acct);
+        acct = acct.withdraw(new Amount(0, 1));
+        assertEquals(acctTest, acct);
     }
 
     @Test
