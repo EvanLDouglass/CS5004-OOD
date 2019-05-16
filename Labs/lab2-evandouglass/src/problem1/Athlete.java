@@ -19,7 +19,6 @@ public class Athlete {
    * 187.96cm)
    * @param weight - athlete's weigh, expressed as a Double in pounds (e.g. 125, 155, 200 pounds)
    * @param league - athelete's league, expressed as String
-   * @return - object Athlete
    */
   public Athlete(Name athletesName, Double height, Double weight, String league) {
     this.athletesName = athletesName;
@@ -36,7 +35,6 @@ public class Athlete {
    * @param height - athlete's height, expressed as a Double in cm (e.g., 6'2'' is recorded as
    * 187.96cm)
    * @param weight - athlete's weigh, expressed as a Double in pounds (e.g. 125, 155, 200 pounds)
-   * @return - object Athlete, with league field set to null
    */
   public Athlete(Name athletesName, Double height, Double weight) {
     this.athletesName = athletesName;
@@ -46,28 +44,28 @@ public class Athlete {
   }
 
   /**
-   * Returns athlete's name as an object Name
+   * @return athlete's name as an object Name
    */
   public Name getAthletesName() {
     return athletesName;
   }
 
   /**
-   * Returns athlete's height as a Double
+   * @return athlete's height as a Double
    */
   public Double getHeight() {
     return height;
   }
 
   /**
-   * Returns athlete's weight as a Double
+   * @return athlete's weight as a Double
    */
   public Double getWeight() {
     return weight;
   }
 
   /**
-   * Returns athlete's league as a String
+   * @return athlete's league as a String
    */
   public String getLeague() {
     return league;
