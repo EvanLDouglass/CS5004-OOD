@@ -2,7 +2,7 @@ package problem1;
 
 /**
  * Class Bedrooms represents temperature information in all
- * bedrooms in a class.
+ * bedrooms in a house.
  * @author evandouglass
  */
 public class Bedrooms extends Room {
@@ -21,7 +21,7 @@ public class Bedrooms extends Room {
       currentTemp = MAX_TEMP;
     }
 
-    setCurrentTemp(currentTemp);
+    this.setCurrentTemp(currentTemp);
   }
 
   /**
