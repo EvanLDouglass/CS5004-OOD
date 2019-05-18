@@ -1,19 +1,19 @@
 package problem1;
 
 /**
- * Class Bedrooms represents temperature information in all
- * bedrooms in a class.
+ * Class Bathrooms represents temperature information in all
+ * bathrooms in a class.
  * @author evandouglass
  */
-public class Bedrooms extends Room {
-  public static final Integer MIN_TEMP = 60;
-  public static final Integer MAX_TEMP = 68;
+public class Bathrooms extends Room {
+  public static final Integer MIN_TEMP = 58;
+  public static final Integer MAX_TEMP = 70;
 
   /**
-   * Constructor for class Bedrooms.
+   * Constructor for class Bathrooms.
    * @param currentTemp The current temperature of the room
    */
-  public Bedrooms(Integer currentTemp) {
+  public Bathrooms(Integer currentTemp) {
     // Check min/max bounds and reassign
     if (currentTemp < MIN_TEMP) {
       currentTemp = MIN_TEMP;
