@@ -1,21 +1,13 @@
 package problem1;
 
 /**
- * Class Room represents a general room in a house. It contains functionality common to all
- * rooms in the house.
+ * Class Room represents the temperature in a general room in a house.
+ * It contains functionality common to all rooms in the house.
+ * Temperatures are simplified and modeled as integers. All temperatures are in fahrenheit.
  * @author evandouglass
- * @version A2 P1
  */
 public class Room {
   private Integer currentTemp;
-
-  /**
-   * Constructor for class Room.
-   * @param currentTemp The current temperature of the room
-   */
-  public Room(Integer currentTemp) {
-    this.currentTemp = currentTemp;
-  }
 
   /**
    * Gets the current temperature.
@@ -26,11 +18,10 @@ public class Room {
   }
 
   /**
-   * Sets the current temperature.
-   * Allows class Thermostat to access temp data.
-   * @param currentTemp the new temperature
+   * Set current temperature
+   * @param temp the new temp
    */
-  public void setCurrentTemp(Integer currentTemp) {
-    this.currentTemp = currentTemp;
+  public void setCurrentTemp(Integer temp) {
+    this.currentTemp = temp;
   }
 }
