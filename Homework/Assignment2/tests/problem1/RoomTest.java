@@ -9,12 +9,10 @@ public class RoomTest {
 
   @Test
   public void setCurrentTemp() {
-    room = new Room();
-    room.setCurrentTemp(40);
-    assertEquals(40, (int)room.getCurrentTemp());
-    room.setCurrentTemp(100);
-    assertEquals(100, (int)room.getCurrentTemp());
-    room.setCurrentTemp(-89);
-    assertEquals(-89, (int)room.getCurrentTemp());
+    room = new Room(55);
+    assertEquals(55, (int)room.getCurrentTemp());
+
+    room = new Room(-40);
+    assertEquals(-40, (int)room.getCurrentTemp());
   }
 }

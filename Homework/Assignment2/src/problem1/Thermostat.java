@@ -1,105 +1,177 @@
 package problem1;
 
 /**
- * Class Thermostat represents a thermostat that can control
- * the temperature in different rooms in a house separately
- * or all at the same time.
+ * Class Thermostat represents a thermostat that can control the temperature in different rooms in a
+ * house separately or all at the same time.
+ *
+ * @author evandouglass
  */
 public class Thermostat {
+
+  public static final Integer MIN_BED_TEMP = 60;
+  public static final Integer MAX_BED_TEMP = 68;
+  public static final Integer MIN_BATH_TEMP = 58;
+  public static final Integer MAX_BATH_TEMP = 70;
+  public static final Integer MIN_LIVING_TEMP = 60;
+  public static final Integer MAX_LIVING_TEMP = 72;
+
+  private enum RoomType {BED, BATH, LIVING}
+
   private Bedrooms bedrooms;
   private Bathrooms bathrooms;
   private LivingRooms livingRooms;
 
   /**
-   * Constructor for Thermostat that accepts objects
-   * @param bedrooms a Bedrooms object
-   * @param bathrooms a Bathrooms object
-   * @param livingRooms a LivingRooms object
-   */
-  public Thermostat(Bedrooms bedrooms, Bathrooms bathrooms, LivingRooms livingRooms) {
-    this.bedrooms = bedrooms;
-    this.bathrooms = bathrooms;
-    this.livingRooms = livingRooms;
-  }
-
-  /**
    * Constructor for Thermostat that accepts temperatures for the rooms
+   *
    * @param bedTemp a temp at which to set bedrooms
    * @param bathTemp a temp at which to set bathrooms
    * @param livingTemp a temp at which to set living rooms
    */
   public Thermostat(Integer bedTemp, Integer bathTemp, Integer livingTemp) {
-    this.bedrooms = new Bedrooms(bedTemp);
-    this.bathrooms = new Bathrooms(bathTemp);
-    this.livingRooms = new LivingRooms(livingTemp);
+    this.bedrooms = new Bedrooms(checkTemp(bedTemp, RoomType.BED));
+    this.bathrooms = new Bathrooms(checkTemp(bathTemp, RoomType.BATH));
+    this.livingRooms = new LivingRooms(checkTemp(livingTemp, RoomType.LIVING));
   }
 
   /* ===== Temp Getters & Setters ===== */
 
   /**
-   * Gets the bedroom temperature.
-   * @return the current bedroom temp
+   * <pre>checkTemp</pre> checks a temperature against the max and min temperature for a given
+   * type of room. If the temperature is outside the acceptable range, it is reset to either the max
+   * or min for that type of room.
+   *
+   * @param temp the given temperature
+   * @param room the type of room
+   * @return If temp is within the acceptable range, the same temp; if below, the room minimum; if
+   * above, the room maximum.
+   */
+  private Integer checkTemp(Integer temp, RoomType room) throws IllegalArgumentException {
+    switch (room) {
+      case BED:
+        if (temp < MIN_BED_TEMP) {
+          temp = MIN_BED_TEMP;
+        } else if (temp > MAX_BED_TEMP) {
+          temp = MAX_BED_TEMP;
+        }
+        break;
+
+      case BATH:
+        if (temp < MIN_BATH_TEMP) {
+          temp = MIN_BATH_TEMP;
+        } else if (temp > MAX_BATH_TEMP) {
+          temp = MAX_BATH_TEMP;
+        }
+        break;
+
+      case LIVING:
+        if (temp < MIN_LIVING_TEMP) {
+          temp = MIN_LIVING_TEMP;
+        } else if (temp > MAX_LIVING_TEMP) {
+          temp = MAX_LIVING_TEMP;
+        }
+        break;
+
+      default:
+        // As this method is private, this should never be thrown, but is here just in case.
+        throw new IllegalArgumentException(
+            "unrecognized room type: must be one of BED, BATH, LIVING");
+    }
+
+    // temp has been reset to be within acceptable bounds
+    return temp;
+  }
+
+  /**
+   * Sets the bedroom temperature. If the temperature is outside the acceptable range for a bedroom,
+   * it is reset to either the max or min for that type of room.
+   *
+   * @param temp the desired temp
+   * @return A new Thermostat object with the updated temp
+   */
+  public Thermostat setBedTemp(Integer temp) {
+    Integer bed = checkTemp(temp, RoomType.BED);
+    Integer bath = this.getBathTemp();
+    Integer living = this.getLivingRoomTemp();
+
+    return new Thermostat(bed, bath, living);
+  }
+
+  /**
+   * Gets the current bedroom temperature
+   *
+   * @return the bedroom temperature
    */
   public Integer getBedTemp() {
     return bedrooms.getCurrentTemp();
   }
 
   /**
-   * Sets the bedroom temperature.
-   * @param temp the new temp
+   * Sets the bathroom temperature. If the temperature is outside the acceptable range for a
+   * bathroom, it is reset to either the max or min for that type of room.
+   *
+   * @param temp the desired temp
+   * @return A new Thermostat object with the updated temp
    */
-  public void setBedTemp(Integer temp) {
-    bedrooms.setCurrentTemp(temp);
+  public Thermostat setBathTemp(Integer temp) {
+    Integer bath = checkTemp(temp, RoomType.BATH);
+    Integer bed = this.getBedTemp();
+    Integer living = this.getLivingRoomTemp();
+
+    return new Thermostat(bed, bath, living);
   }
 
   /**
-   * Gets the bathroom temperature.
-   * @return the current bathroom temp
+   * Gets the current bathroom temperature.
+   *
+   * @return the bathroom temp
    */
   public Integer getBathTemp() {
     return bathrooms.getCurrentTemp();
   }
 
   /**
-   * Sets the bathroom temperature.
-   * @param temp the new temp
+   * Sets the living room temperature. If the temperature is outside the acceptable range for a
+   * living room, it is reset to either the max or min for that type of room.
+   *
+   * @param temp the desired temp
+   * @return A new Thermostat object with the updated temp
    */
-  public void setBathTemp(Integer temp) {
-    bathrooms.setCurrentTemp(temp);
+  public Thermostat setLivingRoomTemp(Integer temp) {
+    Integer living = checkTemp(temp, RoomType.LIVING);
+    Integer bed = this.getBedTemp();
+    Integer bath = this.getBathTemp();
+
+    return new Thermostat(bed, bath, living);
   }
 
   /**
-   * Gets the living room temperature.
-   * @return the current living room temperature
+   * Gets the current living room temperature.
+   *
+   * @return the living room temp
    */
-  public Integer getLivingTemp() {
+  public Integer getLivingRoomTemp() {
     return livingRooms.getCurrentTemp();
   }
 
   /**
-   * Sets the living room temperature.
-   * @param temp the new temp
+   * Sets the temperature in all rooms at once.
+   *
+   * @param temp the desired temp
    */
-  public void setLivingTemp(Integer temp) {
-    livingRooms.setCurrentTemp(temp);
+  public Thermostat setHouseTemp(Integer temp) {
+    Integer bed = checkTemp(temp, RoomType.BED);
+    Integer bath = checkTemp(temp, RoomType.BATH);
+    Integer living = checkTemp(temp, RoomType.LIVING);
+
+    return new Thermostat(bed, bath, living);
   }
 
-  /**
-   * Sets every room to the same temperature. If the temperature is above or below
-   * any individual room's max or min temp, that room will be set at it's respective
-   * max or min temp.
-   * @param temp the new temp
-   */
-  public void setHouseTemp(Integer temp) {
-    bedrooms.setCurrentTemp(temp);
-    bathrooms.setCurrentTemp(temp);
-    livingRooms.setCurrentTemp(temp);
-  }
-
-  /* ===== Basic Getters & Setters ===== */
+  /* ===== Basic Getters ===== */
 
   /**
    * Getter for Bedrooms field
+   *
    * @return Bedrooms object
    */
   public Bedrooms getBedrooms() {
@@ -107,15 +179,8 @@ public class Thermostat {
   }
 
   /**
-   * Setter for Bedrooms field
-   * @param bedrooms new Bedrooms object
-   */
-  public void setBedrooms(Bedrooms bedrooms) {
-    this.bedrooms = bedrooms;
-  }
-
-  /**
    * Getter for Bathrooms field
+   *
    * @return Bathrooms object
    */
   public Bathrooms getBathrooms() {
@@ -123,26 +188,11 @@ public class Thermostat {
   }
 
   /**
-   * Setter for Bathrooms field
-   * @param bathrooms new Bathrooms object
-   */
-  public void setBathrooms(Bathrooms bathrooms) {
-    this.bathrooms = bathrooms;
-  }
-
-  /**
    * Getter for LivingRooms field
+   *
    * @return LivingRooms object
    */
   public LivingRooms getLivingRooms() {
     return livingRooms;
-  }
-
-  /**
-   * Setter for LivingRooms field
-   * @param livingRooms new LivingRoom object
-   */
-  public void setLivingRooms(LivingRooms livingRooms) {
-    this.livingRooms = livingRooms;
   }
 }
