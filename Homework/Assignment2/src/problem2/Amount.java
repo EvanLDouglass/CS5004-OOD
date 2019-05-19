@@ -13,13 +13,13 @@ package problem2;
  */
 
 /**
- * Class Amount represents an amount of money in dollars and cents.
- * The value of the amount cannot be negative and cents is always
- * between 0 and 99, inclusive.
+ * Class Amount represents an amount of money in dollars and cents. The value of the amount cannot
+ * be negative and cents is always between 0 and 99, inclusive.
  *
  * @author evandouglass
  */
 public class Amount {
+
   private int dollars;
   private int cents;
 
@@ -32,6 +32,7 @@ public class Amount {
 
   /**
    * Primary constructor for class Amount.
+   *
    * @param dollars the amount of dollars
    * @param cents the amount of cents
    */
@@ -58,6 +59,7 @@ public class Amount {
 
   /**
    * Adds the given amount and returns the value without side affects.
+   *
    * @param other an amount to add
    * @return the current account value + the other account value
    */
@@ -76,6 +78,7 @@ public class Amount {
 
   /**
    * Subtracts the given amount and returns the value without side affects.
+   *
    * @param other an amount to subtract
    * @return the current account value - the other account value
    */
@@ -101,6 +104,7 @@ public class Amount {
 
   /**
    * Creates a human readable representation of an Amount.
+   *
    * @return the Amount as a string
    */
   @Override
@@ -110,13 +114,18 @@ public class Amount {
 
   /**
    * Tests equality of another Amount object.
+   *
    * @param o the other object
    * @return true if the dollars and cents of each Amount are the same, false otherwise.
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Amount amount = (Amount) o;
     return dollars == amount.dollars &&
         cents == amount.cents;
@@ -126,6 +135,7 @@ public class Amount {
 
   /**
    * Gets the dollars in the account.
+   *
    * @return the amount of dollars in the account
    */
   public int getDollars() {
@@ -134,6 +144,7 @@ public class Amount {
 
   /**
    * Gets the cents value in the account.
+   *
    * @return the cents value in the account
    */
   public int getCents() {
