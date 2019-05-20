@@ -1,10 +1,9 @@
 package problem2;
 
 /*
- * This class was directly copy/pasted from Assignment 1, problem 3.
- * Since it has already been tested there, I have not included more tests
- * here. I have removed setters for this assignment but that does not affect
- * the correctness of the rest of the methods.
+ * This class was directly copy/pasted from Assignment 1, problem 3. Some
+ * functionality has been changed, so tests for this class have been rewritten for
+ * the package.
  *
  * I chose to copy and paste this class instead of importing it because
  * we are not including project dependencies in our GitHub uploads, so it
@@ -20,8 +19,8 @@ package problem2;
  */
 public class Amount {
 
-  private int dollars;
-  private int cents;
+  private Integer dollars;
+  private Integer cents;
 
   /**
    * Basic constructor for class Amount.
@@ -127,18 +126,18 @@ public class Amount {
       return false;
     }
     Amount amount = (Amount) o;
-    return dollars == amount.dollars &&
-        cents == amount.cents;
+    return dollars.equals(amount.dollars) &&
+        cents.equals(amount.cents);
   }
 
-  /* ===== Getters and Setters ===== */
+  /* ===== Getters ===== */
 
   /**
    * Gets the dollars in the account.
    *
    * @return the amount of dollars in the account
    */
-  public int getDollars() {
+  public Integer getDollars() {
     return dollars;
   }
 
@@ -147,7 +146,7 @@ public class Amount {
    *
    * @return the cents value in the account
    */
-  public int getCents() {
+  public Integer getCents() {
     return cents;
   }
 }
