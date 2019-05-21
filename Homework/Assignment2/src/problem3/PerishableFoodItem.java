@@ -1,5 +1,7 @@
 package problem3;
 
+import java.util.Objects;
+
 /**
  * Class PerishableFoodItem represents a perishable food item. It is a child of class FoodItem.
  *
@@ -35,6 +37,41 @@ public class PerishableFoodItem extends FoodItem {
     // Assign
     this.orderDate = orderDate;
     this.expirationDate = expirationDate;
+  }
+
+  /* ===== Overrides ===== */
+
+  /**
+   * Formats item as a string
+   *
+   * @return the item as a string
+   */
+  public String toString() {
+    return super.toString() +
+        String.format(", ordered on day %d, expires on day %d",
+            orderDate, expirationDate);
+  }
+
+  /**
+   * Tests for equality
+   *
+   * @param o the object to test
+   * @return <pre>true</pre> if equal, else <pre>false</pre>
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    PerishableFoodItem that = (PerishableFoodItem) o;
+    return orderDate.equals(that.orderDate) &&
+        expirationDate.equals(that.expirationDate);
   }
 
   /* ===== Getters ===== */
