@@ -54,4 +54,13 @@ public class PerishableFoodItemTest {
         10,
         10);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testTooManyItems() {
+    PerishableFoodItem item = new PerishableFoodItem("Perishable",
+        34.5,
+        101,
+        10,
+        10);
+  }
 }

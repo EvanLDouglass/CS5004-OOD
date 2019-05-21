@@ -28,6 +28,8 @@ public class PerishableFoodItem extends FoodItem {
     // Validate
     if (orderDate >= expirationDate) {
       throw new IllegalArgumentException("don't order expired foods!");
+    } else if (quantity > MAX_QUANTITY) {
+      throw new IllegalArgumentException("we can't hold that many of this item!");
     }
 
     // Assign
