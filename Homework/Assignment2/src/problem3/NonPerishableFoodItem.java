@@ -1,8 +1,7 @@
 package problem3;
 
 /**
- * Class NonPerishableFoodItem represents a non-perishable food item, such as
- * dried goods.
+ * Class NonPerishableFoodItem represents a non-perishable food item, such as dried goods.
  *
  * @author evandouglass
  */
