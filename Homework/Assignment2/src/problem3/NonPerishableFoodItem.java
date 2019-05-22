@@ -15,6 +15,7 @@ public class NonPerishableFoodItem extends FoodItem {
    * @param name name of the item
    * @param pricePerUnit the current price per unit of the item
    * @param quantity the current quantity of the item in stock
+   * @throws IllegalArgumentException if there are more items than the maximum amount allowed
    */
   public NonPerishableFoodItem(String name, Double pricePerUnit, Integer quantity)
       throws IllegalArgumentException {

@@ -1,7 +1,5 @@
 package problem3;
 
-import java.util.Objects;
-
 /**
  * Class PerishableFoodItem represents a perishable food item. It is a child of class FoodItem.
  *
@@ -22,6 +20,8 @@ public class PerishableFoodItem extends FoodItem {
    * @param quantity the current quantity of the item in stock
    * @param orderDate date of order, represented as the number of days since May 15, 2019
    * @param expirationDate date of expiration, represented as the number of days since May 15, 2019
+   * @throws IllegalArgumentException if expiration is less than or equal to order date or there are
+   * more items than the maximum amount allowed
    */
   public PerishableFoodItem(String name, Double pricePerUnit, Integer quantity,
       Integer orderDate, Integer expirationDate) throws IllegalArgumentException {
