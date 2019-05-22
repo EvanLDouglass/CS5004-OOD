@@ -20,6 +20,7 @@ public class FoodItem {
    * @param name name of the item
    * @param pricePerUnit the current price per unit of the item
    * @param quantity the current quantity of the item in stock
+   * @throws IllegalArgumentException if price or quantity is negative
    */
   public FoodItem(String name, Double pricePerUnit, Integer quantity)
       throws IllegalArgumentException {
