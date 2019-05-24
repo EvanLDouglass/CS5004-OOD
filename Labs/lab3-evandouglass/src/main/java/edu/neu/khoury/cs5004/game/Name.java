@@ -1,7 +1,5 @@
 package edu.neu.khoury.cs5004.game;
 
-import java.util.Objects;
-
 /**
  * A simple immutable name class containing a first and last name.
  *
