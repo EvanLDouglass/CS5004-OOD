@@ -15,11 +15,6 @@ public class AbstractArtistTest {
     public ArtistTest(Name name, Age age) {
       super(name, age);
     }
-
-    @Override
-    public IArtist receiveAward(String award) {
-      return null;
-    }
   }
 
   private ArtistTest aTest;
@@ -50,6 +45,12 @@ public class AbstractArtistTest {
         "genres: \n" +
         "awards: ";
     assertEquals(result, anotherTest.toString());
+  }
+
+  @Test
+  public void giveAward() {
+    anotherTest.receiveAward("Nobel");
+    assertEquals(",Nobel", anotherTest.getAwards());
   }
 
   @Test

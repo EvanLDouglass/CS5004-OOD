@@ -44,6 +44,11 @@ public abstract class AbstractArtist implements IArtist {
 
   /* ===== Overrides ===== */
 
+  @Override
+  public void receiveAward(String award) {
+    this.awards += "," + award;
+  }
+
   /**
    * Represent's this object as a string.
    *

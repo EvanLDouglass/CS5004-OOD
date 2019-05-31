@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.khoury.sc5004.problem1.AbstractArtist</OriginalElement>
+  <nodes>
+    <node x="0.0" y="1009.0">edu.neu.khoury.sc5004.problem1.Age</node>
+    <node x="421.5" y="935.0">edu.neu.khoury.sc5004.problem1.Photographer</node>
+    <node x="723.5" y="935.0">edu.neu.khoury.sc5004.problem1.Dancer</node>
+    <node x="849.5" y="935.0">edu.neu.khoury.sc5004.problem1.FilmMaker</node>
+    <node x="607.5" y="935.0">edu.neu.khoury.sc5004.problem1.Actor</node>
+    <node x="645.5" y="594.0">edu.neu.khoury.sc5004.problem1.AbstractFilmArtist</node>
+    <node x="927.5" y="623.0">edu.neu.khoury.sc5004.problem1.Poet</node>
+    <node x="285.5" y="935.0">edu.neu.khoury.sc5004.problem1.Painter</node>
+    <node x="328.0" y="1009.0">edu.neu.khoury.sc5004.problem1.Name</node>
+    <node x="470.25" y="0.0">edu.neu.khoury.sc5004.problem1.IArtist</node>
+    <node x="470.25" y="108.0">edu.neu.khoury.sc5004.problem1.AbstractArtist</node>
+    <node x="0.0" y="623.0">edu.neu.khoury.sc5004.problem1.Musician</node>
+    <node x="301.0" y="652.0">edu.neu.khoury.sc5004.problem1.AbstractVisualArtist</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.khoury.sc5004.problem1.Actor" target="edu.neu.khoury.sc5004.problem1.AbstractFilmArtist">
+      <point x="0.0" y="-14.5" />
+      <point x="655.5" y="910.0" />
+      <point x="689.1666666666666" y="910.0" />
+      <point x="-87.33333333333337" y="145.5" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.AbstractFilmArtist" target="edu.neu.khoury.sc5004.problem1.AbstractArtist">
+      <point x="0.0" y="-145.5" />
+      <point x="776.5" y="574.0" />
+      <point x="620.875" y="574.0" />
+      <point x="30.125" y="218.0" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.AbstractArtist" target="edu.neu.khoury.sc5004.problem1.IArtist">
+      <point x="0.0" y="-218.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.Photographer" target="edu.neu.khoury.sc5004.problem1.AbstractVisualArtist">
+      <point x="0.0" y="-14.5" />
+      <point x="504.5" y="910.0" />
+      <point x="485.5" y="910.0" />
+      <point x="61.5" y="87.5" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.AbstractVisualArtist" target="edu.neu.khoury.sc5004.problem1.AbstractArtist">
+      <point x="0.0" y="-87.5" />
+      <point x="424.0" y="574.0" />
+      <point x="560.625" y="574.0" />
+      <point x="-30.125" y="218.0" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.Musician" target="edu.neu.khoury.sc5004.problem1.AbstractArtist">
+      <point x="0.0" y="-116.5" />
+      <point x="140.5" y="564.0" />
+      <point x="500.375" y="564.0" />
+      <point x="-90.375" y="218.0" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.Dancer" target="edu.neu.khoury.sc5004.problem1.AbstractFilmArtist">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="145.5" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.FilmMaker" target="edu.neu.khoury.sc5004.problem1.AbstractFilmArtist">
+      <point x="0.0" y="-14.5" />
+      <point x="917.5" y="910.0" />
+      <point x="863.8333333333333" y="910.0" />
+      <point x="87.33333333333326" y="145.5" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.Poet" target="edu.neu.khoury.sc5004.problem1.AbstractArtist">
+      <point x="0.0" y="-116.5" />
+      <point x="1083.5" y="564.0" />
+      <point x="681.125" y="564.0" />
+      <point x="90.375" y="218.0" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem1.Painter" target="edu.neu.khoury.sc5004.problem1.AbstractVisualArtist">
+      <point x="0.0" y="-14.5" />
+      <point x="343.5" y="910.0" />
+      <point x="362.5" y="910.0" />
+      <point x="-61.5" y="87.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="663.0" y="530.5" />
+  <SelectedNodes>
+    <node>edu.neu.khoury.sc5004.problem1.AbstractArtist</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
