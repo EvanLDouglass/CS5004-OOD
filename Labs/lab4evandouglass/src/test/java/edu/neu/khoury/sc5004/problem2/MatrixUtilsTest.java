@@ -9,16 +9,12 @@ import org.junit.Test;
 
 public class MatrixUtilsTest {
   private Integer[][] m1;
-  private Integer[][] m2;
   private Integer[][] diffSize;
-  private Integer[][] empty;
 
   @Before
   public void setUp() throws Exception {
     m1 = new Integer[2][3];
-    m2 = new Integer[2][3];
     diffSize = new Integer[3][2];
-    empty = new Integer[0][0];
   }
 
   @Test

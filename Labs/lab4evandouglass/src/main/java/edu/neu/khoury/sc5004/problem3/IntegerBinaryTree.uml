@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.khoury.sc5004.problem3.IntegerBinaryTree</OriginalElement>
+  <nodes>
+    <node x="235.33333333333331" y="102.0">edu.neu.khoury.sc5004.problem3.IntegerBinaryTree</node>
+    <node x="0.0" y="399.0">edu.neu.khoury.sc5004.problem3.LinkedIntegerBinaryTree</node>
+    <node x="13.333333333333343" y="0.0">edu.neu.khoury.sc5004.problem3.Node</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.khoury.sc5004.problem3.LinkedIntegerBinaryTree" target="edu.neu.khoury.sc5004.problem3.Node">
+      <point x="-114.33333333333331" y="-174.5" />
+      <point x="57.166666666666686" y="374.0" />
+      <point x="63.83333333333334" y="374.0" />
+      <point x="-50.5" y="174.5" />
+    </edge>
+    <edge source="edu.neu.khoury.sc5004.problem3.LinkedIntegerBinaryTree" target="edu.neu.khoury.sc5004.problem3.IntegerBinaryTree">
+      <point x="114.33333333333331" y="-174.5" />
+      <point x="285.8333333333333" y="374.0" />
+      <point x="356.8333333333333" y="374.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="618.0" y="247.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
