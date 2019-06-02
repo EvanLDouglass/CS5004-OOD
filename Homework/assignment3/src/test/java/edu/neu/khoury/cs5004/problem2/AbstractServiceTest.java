@@ -24,6 +24,23 @@ public class AbstractServiceTest {
   }
 
   @Test
+  public void loyaltyDiscount() {
+    assertEquals(90.0, service.giveLoyaltyDiscount(100.0), 0.0);
+
+    service = new ConcreteService("0001", "123 4th Ave.",
+        PropertySize.LARGE, true, 9);
+    assertEquals(50.0, service.giveLoyaltyDiscount(100.0), 0.0);
+
+    service = new ConcreteService("0001", "123 4th Ave.",
+        PropertySize.LARGE, true, 19);
+    assertEquals(50.0, service.giveLoyaltyDiscount(100.0), 0.0);
+
+    service = new ConcreteService("0001", "123 4th Ave.",
+        PropertySize.LARGE, false, 1);
+    assertEquals(100.0, service.giveLoyaltyDiscount(100.0), 0.0);
+  }
+
+  @Test
   public void toString1() {
     String result = "invoice=0001 address='123 4th Ave.' size=Large monthly=true serviced=1";
     assertEquals(result, service.toString());

@@ -51,7 +51,7 @@ public class PaintingService extends AbstractInteriorService {
     }
 
     Double base =  PRICE_PER_HOUR * days * hrsPerDay;
-    return addPetFee(base);
+    return giveLoyaltyDiscount(addPetFee(base));
   }
 
   /* ===== Object Overrides ===== */

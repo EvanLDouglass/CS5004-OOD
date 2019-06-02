@@ -44,12 +44,54 @@ public abstract class AbstractService implements Service {
   /* ===== Methods ===== */
 
   /**
+   * Gives a loyalty discount for a service that monthly or is the 10th
+   * in a row. The discounts are mutually exclusive.
+   *
+   * @param base the base price
+   * @return a discounted base price, if one of the loyalty discounts can
+   * be applied.
+   */
+  Double giveLoyaltyDiscount(Double base) {
+    if (numServicesAtAddr % 10 == 9) {  // means this service will be 10th
+      base = giveEveryTenthDiscount(base);
+    } else if (isMonthlyService) {
+      base = giveMonthlyDiscount(base);
+    }
+    return base;
+  }
+
+  /**
+   * If this service is performed monthly, this method gives a 10%
+   * discount from the base price.
+   *
+   * @param base the base price
+   * @return the price after a discount is applied, or the same price depending
+   * on if the service is monthly
+   */
+  private Double giveMonthlyDiscount(Double base) {
+    Double percent = 0.1;
+    return base - (base * percent);
+  }
+
+  /**
+   * If this service will be the tenth in a row, this method gives a
+   * 50% discount from the base price.
+   *
+   * @param base the base price
+   * @return the price after a discount is applied, or the same price depending
+   * on if the service is the tenth in a row
+   */
+  private Double giveEveryTenthDiscount(Double base) {
+    return base / 2;
+  }
+
+  /**
    * Tests if a number is positive.
    *
    * @param num the number to test
    * @return {@code true} if the number is negative, else {@code false}
    */
-  protected boolean isNegative(Integer num) {
+  boolean isNegative(Integer num) {
     return num < 0;
   }
 

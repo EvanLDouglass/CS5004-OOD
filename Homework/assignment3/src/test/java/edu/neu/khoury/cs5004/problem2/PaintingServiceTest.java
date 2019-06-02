@@ -23,13 +23,13 @@ public class PaintingServiceTest {
 
   @Test
   public void calculatePrice() {
-    assertEquals(1280.0, service.calculatePrice(), 0.0);
+    assertEquals(1152.0, service.calculatePrice(), 0.0);
 
     service = new PaintingService(
         "1-A",
         "123 4th",
         PropertySize.MEDIUM,
-        true,
+        false,
         3,
         0
     );
@@ -39,11 +39,21 @@ public class PaintingServiceTest {
         "1-A",
         "123 4th",
         PropertySize.LARGE,
-        true,
+        false,
         3,
         0
     );
     assertEquals(1920.0, service.calculatePrice(), 0.0);
+
+    service = new PaintingService(
+        "1-A",
+        "123 4th",
+        PropertySize.LARGE,
+        true,
+        39,
+        0
+    );
+    assertEquals(960.0, service.calculatePrice(), 0.0);
   }
 
   @Test

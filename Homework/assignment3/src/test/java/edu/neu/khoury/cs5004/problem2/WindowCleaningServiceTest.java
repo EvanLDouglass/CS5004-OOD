@@ -84,6 +84,28 @@ public class WindowCleaningServiceTest {
         3
     );
     assertEquals(336.0, service.calculatePrice(), 0.0);
+
+    service = new WindowCleaningService(
+        "0001",
+        "2432 9th",
+        PropertySize.LARGE,
+        true,
+        5,
+        4,
+        3
+    );
+    assertEquals(302.4, service.calculatePrice(), 0.00001);
+
+    service = new WindowCleaningService(
+        "0001",
+        "2432 9th",
+        PropertySize.LARGE,
+        true,
+        29,
+        4,
+        3
+    );
+    assertEquals(168.0, service.calculatePrice(), 0.0);
   }
 
   @Test

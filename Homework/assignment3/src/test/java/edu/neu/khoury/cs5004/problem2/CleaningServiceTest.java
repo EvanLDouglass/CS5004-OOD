@@ -23,7 +23,7 @@ public class CleaningServiceTest {
 
   @Test
   public void calculatePrice() {
-    assertEquals(80.0, service.calculatePrice(), 0.0);
+    assertEquals(72.0, service.calculatePrice(), 0.0);
 
     service = new CleaningService(
         "123ABC",
@@ -52,17 +52,17 @@ public class CleaningServiceTest {
         "1-A",
         "123 4th",
         PropertySize.SMALL,
-        true,
+        false,
         3,
         1
     );
-    assertEquals(84.0, service.calculatePrice(), 0.0);
+    assertEquals(84.0, service.calculatePrice(), 0.00001);
 
     service = new CleaningService(
         "1-A",
         "123 4th",
         PropertySize.MEDIUM,
-        true,
+        false,
         3,
         2
     );
@@ -72,7 +72,7 @@ public class CleaningServiceTest {
         "1-A",
         "123 4th",
         PropertySize.LARGE,
-        true,
+        false,
         3,
         3
     );

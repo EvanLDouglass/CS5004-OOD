@@ -44,7 +44,7 @@ public class WindowCleaningService extends AbstractExteriorService {
 
   @Override
   public Double calculatePrice() {
-    return addFee(super.calculatePrice());
+    return giveLoyaltyDiscount(addFee(super.calculatePrice()));
   }
 
   /**

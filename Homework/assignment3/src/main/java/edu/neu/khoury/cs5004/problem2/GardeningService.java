@@ -23,7 +23,7 @@ public class GardeningService extends AbstractExteriorService {
   @Override
   public Double calculatePrice() {
     Double wasteRemovalFee = 20.0;
-    return super.calculatePrice() + wasteRemovalFee;
+    return giveLoyaltyDiscount(super.calculatePrice() + wasteRemovalFee);
   }
 
   /* ===== Object Overrides ===== */
