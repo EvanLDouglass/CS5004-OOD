@@ -35,31 +35,6 @@ public class AbstractInteriorServiceTest {
   }
 
   @Test
-  public void calculatePrice() {
-    assertEquals(160.0, service.calculatePrice(), 0.0);
-
-    service = new ConcreteInteriorService(
-        "123ABC",
-        "11th St.",
-        PropertySize.SMALL,
-        false,
-        3,
-        2
-    );
-    assertEquals(80.0, service.calculatePrice(), 0.0);
-
-    service = new ConcreteInteriorService(
-        "123ABC",
-        "11th St.",
-        PropertySize.LARGE,
-        false,
-        3,
-        2
-    );
-    assertEquals(320.0, service.calculatePrice(), 0.0);
-  }
-
-  @Test
   public void toString1() {
     String result =
         "invoice=123ABC address='11th St.' size=Medium monthly=false serviced=3 pets=2";
@@ -139,6 +114,11 @@ public class AbstractInteriorServiceTest {
         Integer numPetsAtAddr) throws IllegalArgumentException {
       super(invoiceID, serviceAddress, propertySize, isMonthlyService, numServicesAtAddr,
           numPetsAtAddr);
+    }
+
+    @Override
+    public Double calculatePrice() {
+      return null;
     }
   }
 }

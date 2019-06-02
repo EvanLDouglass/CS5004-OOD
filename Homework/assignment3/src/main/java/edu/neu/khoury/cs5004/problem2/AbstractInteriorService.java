@@ -33,33 +33,6 @@ public abstract class AbstractInteriorService extends AbstractService {
     this.numPetsAtAddr = numPetsAtAddr;
   }
 
-  /* ===== Methods ===== */
-
-  /**
-   * Calculates the price of an interior service.
-   *
-   * @return the price of this service
-   */
-  @Override
-  public Double calculatePrice() {
-    Double price;
-    switch (getPropertySize()) {
-      case SMALL:
-        price = PRICE_PER_HOUR;
-        break;
-      case MEDIUM:
-        price = PRICE_PER_HOUR * 2;
-        break;
-      case LARGE:
-        price = PRICE_PER_HOUR * 4;
-        break;
-      default:
-        // to appease the compiler
-        price = null;
-    }
-    return price;
-  }
-
   /* ===== Object Overrides ===== */
 
   @Override
