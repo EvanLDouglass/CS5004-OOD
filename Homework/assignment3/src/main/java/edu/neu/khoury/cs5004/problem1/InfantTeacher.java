@@ -61,8 +61,9 @@ public class InfantTeacher extends AbstractFullTimeTeacher {
   /* ===== Getters & Setters ===== */
 
   /**
-   * Sets the CoTeacher. Also dynamically sets the max number of children
-   * depending on if the teacher doesn't have a co-teacher (Name("", "")).
+   * Sets the CoTeacher. Also dynamically sets the max number of children depending on if the
+   * teacher doesn't have a co-teacher (Name("", "")).
+   *
    * @param teacher the {@code Name} of the co-teacher
    */
   @Override

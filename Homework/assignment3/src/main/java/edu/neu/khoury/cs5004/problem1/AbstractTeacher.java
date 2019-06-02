@@ -3,8 +3,7 @@ package edu.neu.khoury.cs5004.problem1;
 import java.util.Objects;
 
 /**
- * An AbstractTeacher contains data common to various kinds of teachers in a
- * daycare center.
+ * An AbstractTeacher contains data common to various kinds of teachers in a daycare center.
  *
  * @author evandouglass
  */
@@ -33,17 +32,13 @@ public abstract class AbstractTeacher {
   /* ===== Methods ===== */
 
   /**
-   * Determines if this teacher has a co-teacher, as defined as
-   * {@code null} or if coTeacher has empty strings for both first
-   * and last name.
+   * Determines if this teacher has a co-teacher, as defined as {@code null} or if coTeacher has
+   * empty strings for both first and last name.
    *
    * @return {@code true} if the teacher has a co-teacher, else {@code false}
    */
   public boolean hasCoTeacher() {
-    if (coTeacher == null || coTeacher.equals(new Name("", ""))) {
-      return false;
-    }
-    return true;
+    return coTeacher != null && !coTeacher.equals(new Name("", ""));
   }
 
   /* ===== Overrides ===== */

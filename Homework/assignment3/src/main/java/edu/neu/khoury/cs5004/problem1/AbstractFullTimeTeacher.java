@@ -15,6 +15,8 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
   private Integer maxChildren;
 
   /**
+   * Constructor for this full time teacher.
+   *
    * @param name this teacher's name
    * @param classroom this teacher's classroom, as a string
    * @param coTeacher this teacher's co-teacher
@@ -40,7 +42,7 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
       case "Preschool":
         // Ensure max num children for this type is set correctly by updating the full-time
         // teacher's co-teacher
-        ((PreschoolTeacher) coTeacher).setCoTeacher(sub.getName());
+        coTeacher.setCoTeacher(sub.getName());
 
         // Make the new preschool teacher
         newFullTime = new PreschoolTeacher(
@@ -56,7 +58,7 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
       case "Infant":
         // Ensure max num children for this type is set correctly by updating the full-time
         // teacher's co-teacher
-        ((InfantTeacher) coTeacher).setCoTeacher(sub.getName());
+        coTeacher.setCoTeacher(sub.getName());
 
         newFullTime = new InfantTeacher(
             sub.getName(),
@@ -72,7 +74,7 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
       case "Toddler":
         // Ensure max num children for this type is set correctly by updating the full-time
         // teacher's co-teacher
-        ((ToddlerTeacher) coTeacher).setCoTeacher(sub.getName());
+        coTeacher.setCoTeacher(sub.getName());
 
         newFullTime = new ToddlerTeacher(
             sub.getName(),
@@ -114,8 +116,8 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
       return false;
     }
     AbstractFullTimeTeacher that = (AbstractFullTimeTeacher) o;
-    return currNumChildren.equals(that.currNumChildren) &&
-        maxChildren.equals(that.maxChildren);
+    return currNumChildren.equals(that.currNumChildren)
+        && maxChildren.equals(that.maxChildren);
   }
 
   @Override
@@ -137,7 +139,7 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
    * @throws IllegalArgumentException if number is out of range
    */
   public void setCurrNumChildren(Integer number) throws IllegalArgumentException {
-    if (! isLessThanMax(number)) {
+    if (!isLessThanMax(number)) {
       throw new IllegalArgumentException("number greater than max");
     }
     if (number < 0) {
@@ -147,10 +149,7 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
   }
 
   private boolean isLessThanMax(Integer num) {
-    if (num <= getMaxChildren()) {
-      return true;
-    }
-    return false;
+    return num <= getMaxChildren();
   }
 
   public Integer getMaxChildren() {

@@ -3,8 +3,8 @@ package edu.neu.khoury.cs5004.problem1;
 import java.util.Objects;
 
 /**
- * A Preschool teacher is responsible for older children, those who
- * are starting to read. A Preschool teacher is a full time employee.
+ * A Preschool teacher is responsible for older children, those who are starting to read. A
+ * Preschool teacher is a full time employee.
  *
  * @author evandouglass
  */
@@ -90,8 +90,8 @@ public class PreschoolTeacher extends AbstractFullTimeTeacher {
   }
 
   /**
-   * Sets the number of children who can read in this class.
-   * Cannot be over the number of children in the class or under zero.
+   * Sets the number of children who can read in this class. Cannot be over the number of children
+   * in the class or under zero.
    *
    * @param currNumCanRead the new number of children who can read
    */
@@ -101,8 +101,8 @@ public class PreschoolTeacher extends AbstractFullTimeTeacher {
   }
 
   /**
-   * Validates the number of children who can read against the total number of
-   * children in the classroom.
+   * Validates the number of children who can read against the total number of children in the
+   * classroom.
    *
    * @param num the number to test
    * @throws IllegalArgumentException if the number is outside the range
