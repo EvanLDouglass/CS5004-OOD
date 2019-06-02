@@ -62,7 +62,7 @@ public interface Service {
   /**
    * Indicates whether this service is performed on a monthly basis.
    *
-   * @return {@true} if it is monthly, else {@code false}
+   * @return {@code true} if it is monthly, else {@code false}
    */
   boolean isMonthly();
 
