@@ -64,10 +64,10 @@ public abstract class AbstractTeacher {
       return false;
     }
     AbstractTeacher that = (AbstractTeacher) o;
-    return vacationStatus == that.vacationStatus &&
-        name.equals(that.name) &&
-        classroom.equals(that.classroom) &&
-        coTeacher.equals(that.coTeacher);
+    return vacationStatus == that.vacationStatus
+        && name.equals(that.name)
+        && classroom.equals(that.classroom)
+        && coTeacher.equals(that.coTeacher);
   }
 
   @Override

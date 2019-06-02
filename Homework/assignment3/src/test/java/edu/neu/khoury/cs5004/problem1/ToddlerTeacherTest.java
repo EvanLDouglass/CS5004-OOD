@@ -60,6 +60,9 @@ public class ToddlerTeacherTest {
         1
     );
     assertEquals(t2.hashCode(), t.hashCode());
+
+    t2.setCurrNumPottyTrained(0);
+    assertNotEquals(t2.hashCode(), t.hashCode());
   }
 
   @Test
