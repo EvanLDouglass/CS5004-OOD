@@ -22,6 +22,63 @@ public class PreschoolTeacherTest {
   }
 
   @Test
+  public void makeFullTimePreschool() {
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    PreschoolTeacher newFull = (PreschoolTeacher) t.convertSubstituteTeacher(sub, "Preschool", t);
+
+    // test name
+    assertEquals(sub.getName(), newFull.getName());
+    // test classroom
+    assertEquals(t.getClassroom(), newFull.getClassroom());
+    // test coTeachers
+    assertEquals(t.getName(), newFull.getCoTeacher());
+    assertEquals(newFull.getCoTeacher(), t.getName());
+    // test vacay
+    assertFalse(newFull.getVacationStatus());
+    // test num children
+    assertEquals(t.getCurrNumChildren(), newFull.getCurrNumChildren());
+    // test max
+    assertEquals(20, (int) t.getMaxChildren());
+    assertEquals(20, (int) newFull.getMaxChildren());
+    // test readers
+    assertEquals(t.getCurrNumCanRead(), newFull.getCurrNumCanRead());
+  }
+
+  @Test
+  public void convertToPreschoolAndChangeMax() {
+    t = new PreschoolTeacher(new Name("Evan", "Douglass"),
+        "306",
+        new Name("", ""),
+        false,
+        2,
+        10,
+        1
+    );
+
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    PreschoolTeacher newFull = (PreschoolTeacher) t.convertSubstituteTeacher(sub, "Preschool", t);
+
+    assertEquals(20, (int) t.getMaxChildren());
+    assertEquals(20, (int) newFull.getMaxChildren());
+  }
+
+  @Test
+  public void changeCoTeacher() {
+    t.setCoTeacher(new Name("", ""));
+    assertEquals(10, (int) t.getMaxChildren());
+    t.setCoTeacher(new Name("Hello", "There"));
+    assertEquals(20, (int) t.getMaxChildren());
+  }
+
+  @Test
   public void toString1() {
     String result = "PreschoolTeacher: name=Evan Douglass classroom=306 coTeacher=John Johns "
         + "onVacation=false numChildren=2 maxChildren=8 childrenCanRead=1";

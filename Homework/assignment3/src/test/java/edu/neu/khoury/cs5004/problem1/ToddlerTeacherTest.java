@@ -1,6 +1,7 @@
 package edu.neu.khoury.cs5004.problem1;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
@@ -18,10 +19,70 @@ public class ToddlerTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        7,
         1,
         1
     );
+  }
+
+  @Test
+  public void makeFullTimeToddler() {
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    ToddlerTeacher newFull = (ToddlerTeacher) t.convertSubstituteTeacher(sub, "Toddler", t);
+
+    // test name
+    assertEquals(sub.getName(), newFull.getName());
+    // test classroom
+    assertEquals(t.getClassroom(), newFull.getClassroom());
+    // test coTeachers
+    assertEquals(t.getName(), newFull.getCoTeacher());
+    assertEquals(newFull.getCoTeacher(), t.getName());
+    // test vacay
+    assertFalse(newFull.getVacationStatus());
+    // test num children
+    assertEquals(t.getCurrNumChildren(), newFull.getCurrNumChildren());
+    // test max
+    assertEquals(14, (int) t.getMaxChildren());
+    assertEquals(14, (int) newFull.getMaxChildren());
+    // test crawlers
+    assertEquals(t.getCurrNumInDiapers(), newFull.getCurrNumInDiapers());
+    // test walkers
+    assertEquals(t.getCurrNumPottyTrained(), newFull.getCurrNumPottyTrained());
+  }
+
+  @Test
+  public void convertToToddlerAndChangeMax() {
+    t = new ToddlerTeacher(new Name("Evan", "Douglass"),
+        "306",
+        new Name("", ""),
+        false,
+        2,
+        7,
+        1,
+        1
+    );
+
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    ToddlerTeacher newFull = (ToddlerTeacher) t.convertSubstituteTeacher(sub, "Toddler", t);
+
+    assertEquals(14, (int) t.getMaxChildren());
+    assertEquals(14, (int) newFull.getMaxChildren());
+  }
+
+  @Test
+  public void changeCoTeacher() {
+    t.setCoTeacher(new Name("", ""));
+    assertEquals(7, (int) t.getMaxChildren());
+    t.setCoTeacher(new Name("Hello", "There"));
+    assertEquals(14, (int) t.getMaxChildren());
   }
 
   @Test
@@ -38,7 +99,7 @@ public class ToddlerTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        7,
         1,
         1
     );
@@ -55,7 +116,7 @@ public class ToddlerTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        7,
         1,
         1
     );

@@ -29,6 +29,69 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
     this.maxChildren = maxChildren;
   }
 
+  /* ===== Methods ===== */
+
+  @Override
+  public FullTimeTeacher convertSubstituteTeacher(SubstituteTeacher sub, String position,
+      FullTimeTeacher coTeacher) throws IllegalArgumentException {
+    // Create the new position
+    FullTimeTeacher newFullTime;
+    switch (position) {
+      case "Preschool":
+        // Ensure max num children for this type is set correctly by updating the full-time
+        // teacher's co-teacher
+        ((PreschoolTeacher) coTeacher).setCoTeacher(sub.getName());
+
+        // Make the new preschool teacher
+        newFullTime = new PreschoolTeacher(
+            sub.getName(),
+            coTeacher.getClassroom(),
+            coTeacher.getName(),
+            sub.getVacationStatus(),
+            coTeacher.getCurrNumChildren(),
+            coTeacher.getMaxChildren(),
+            ((PreschoolTeacher) coTeacher).getCurrNumCanRead()
+        );
+        break;
+      case "Infant":
+        // Ensure max num children for this type is set correctly by updating the full-time
+        // teacher's co-teacher
+        ((InfantTeacher) coTeacher).setCoTeacher(sub.getName());
+
+        newFullTime = new InfantTeacher(
+            sub.getName(),
+            coTeacher.getClassroom(),
+            coTeacher.getName(),
+            sub.getVacationStatus(),
+            coTeacher.getCurrNumChildren(),
+            coTeacher.getMaxChildren(),
+            ((InfantTeacher) coTeacher).getCurrNumCrawlers(),
+            ((InfantTeacher) coTeacher).getCurrNumWalkers()
+        );
+        break;
+      case "Toddler":
+        // Ensure max num children for this type is set correctly by updating the full-time
+        // teacher's co-teacher
+        ((ToddlerTeacher) coTeacher).setCoTeacher(sub.getName());
+
+        newFullTime = new ToddlerTeacher(
+            sub.getName(),
+            coTeacher.getClassroom(),
+            coTeacher.getName(),
+            sub.getVacationStatus(),
+            coTeacher.getCurrNumChildren(),
+            coTeacher.getMaxChildren(),
+            ((ToddlerTeacher) coTeacher).getCurrNumInDiapers(),
+            ((ToddlerTeacher) coTeacher).getCurrNumPottyTrained()
+        );
+        break;
+      default:
+        throw new IllegalArgumentException("position " + position + " not recognized");
+    }
+
+    return newFullTime;
+  }
+
   /* ===== Overrides ===== */
   // Docs in interface
 
@@ -61,12 +124,8 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
   }
 
   /* ===== Getters & Setters ===== */
+  // Docs in interface where possible
 
-  /**
-   * Gets the current number of children in the class.
-   *
-   * @return number of children in the class
-   */
   public Integer getCurrNumChildren() {
     return currNumChildren;
   }
@@ -87,12 +146,6 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
     this.currNumChildren = number;
   }
 
-  /**
-   * Determines if the given number is less than the max number of children allowed in the class.
-   *
-   * @param num the number to test
-   * @return {@code true} if the number is less than the max, else {@code false}
-   */
   private boolean isLessThanMax(Integer num) {
     if (num <= getMaxChildren()) {
       return true;
@@ -100,11 +153,6 @@ public abstract class AbstractFullTimeTeacher extends AbstractTeacher
     return false;
   }
 
-  /**
-   * Gets the max number of children in the class.
-   *
-   * @return the max number of children in the class
-   */
   public Integer getMaxChildren() {
     return maxChildren;
   }

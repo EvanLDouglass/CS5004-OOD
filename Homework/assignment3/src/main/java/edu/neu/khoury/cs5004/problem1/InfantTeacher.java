@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class InfantTeacher extends AbstractFullTimeTeacher {
 
+  private static final Integer childrenPerTeacher = 4;
+
   private Integer currNumCrawlers;
   private Integer currNumWalkers;
-  private Integer childrenPerTeacher = 4;
 
   /**
    * Constructor for InfantTeacher.

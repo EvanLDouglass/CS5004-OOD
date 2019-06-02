@@ -28,6 +28,67 @@ public class InfantTeacherTest {
   }
 
   @Test
+  public void makeFullTimeInfant() {
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    InfantTeacher newFull = (InfantTeacher) t.convertSubstituteTeacher(sub, "Infant", t);
+
+    // test name
+    assertEquals(sub.getName(), newFull.getName());
+    // test classroom
+    assertEquals(t.getClassroom(), newFull.getClassroom());
+    // test coTeachers
+    assertEquals(t.getName(), newFull.getCoTeacher());
+    assertEquals(newFull.getCoTeacher(), t.getName());
+    // test vacay
+    assertFalse(newFull.getVacationStatus());
+    // test num children
+    assertEquals(t.getCurrNumChildren(), newFull.getCurrNumChildren());
+    // test max
+    assertEquals(8, (int) t.getMaxChildren());
+    assertEquals(8, (int) newFull.getMaxChildren());
+    // test crawlers
+    assertEquals(t.getCurrNumCrawlers(), newFull.getCurrNumCrawlers());
+    // test walkers
+    assertEquals(t.getCurrNumWalkers(), newFull.getCurrNumWalkers());
+  }
+
+  @Test
+  public void convertToInfantAndChangeMax() {
+    t = new InfantTeacher(
+        new Name("Evan", "Douglass"),
+        "306",
+        new Name("", ""),
+        false,
+        2,
+        4,
+        1,
+        1
+    );
+
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    InfantTeacher newFull = (InfantTeacher) t.convertSubstituteTeacher(sub, "Infant", t);
+
+    assertEquals(8, (int) t.getMaxChildren());
+    assertEquals(8, (int) newFull.getMaxChildren());
+  }
+
+  @Test
+  public void changeCoTeacher() {
+    t.setCoTeacher(new Name("", ""));
+    assertEquals(4, (int) t.getMaxChildren());
+    t.setCoTeacher(new Name("Hello", "There"));
+    assertEquals(8, (int) t.getMaxChildren());
+  }
+
+  @Test
   public void toString1() {
     // The super class toString methods are strung together
     // so this will test all of them.
