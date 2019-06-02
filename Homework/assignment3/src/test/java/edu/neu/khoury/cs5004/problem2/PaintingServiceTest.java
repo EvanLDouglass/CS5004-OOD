@@ -47,6 +47,39 @@ public class PaintingServiceTest {
   }
 
   @Test
+  public void priceWithPets() {
+    service = new PaintingService(
+        "1-A",
+        "123 4th",
+        PropertySize.SMALL,
+        true,
+        3,
+        1
+    );
+    assertEquals(1344.0, service.calculatePrice(), 0.0);
+
+    service = new PaintingService(
+        "1-A",
+        "123 4th",
+        PropertySize.MEDIUM,
+        true,
+        3,
+        2
+    );
+    assertEquals(1344.0, service.calculatePrice(), 0.0);
+
+    service = new PaintingService(
+        "1-A",
+        "123 4th",
+        PropertySize.LARGE,
+        true,
+        3,
+        3
+    );
+    assertEquals(2054.4, service.calculatePrice(), 0.00001);
+  }
+
+  @Test
   public void toString1() {
     String result =
         "PaintingService: invoice=1-A address='123 4th' size=Small monthly=true serviced=3 pets=0";

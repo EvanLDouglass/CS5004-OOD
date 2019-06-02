@@ -35,6 +35,41 @@ public class AbstractInteriorServiceTest {
   }
 
   @Test
+  public void petFee() {
+    assertEquals(105.0, service.addPetFee(100.0), 0.0);
+
+    service = new ConcreteInteriorService(
+        "123ABC",
+        "11th St.",
+        PropertySize.MEDIUM,
+        false,
+        3,
+        3
+    );
+    assertEquals(107.0, service.addPetFee(100.0), 0.0);
+
+    service = new ConcreteInteriorService(
+        "123ABC",
+        "11th St.",
+        PropertySize.MEDIUM,
+        false,
+        3,
+        1
+    );
+    assertEquals(105.0, service.addPetFee(100.0), 0.0);
+
+    service = new ConcreteInteriorService(
+        "123ABC",
+        "11th St.",
+        PropertySize.MEDIUM,
+        false,
+        3,
+        0
+    );
+    assertEquals(100.0, service.addPetFee(100.0), 0.0);
+  }
+
+  @Test
   public void toString1() {
     String result =
         "invoice=123ABC address='11th St.' size=Medium monthly=false serviced=3 pets=2";

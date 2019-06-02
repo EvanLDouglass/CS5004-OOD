@@ -50,7 +50,8 @@ public class PaintingService extends AbstractInteriorService {
         throw new IllegalStateException("Unexpected value: " + getPropertySize());
     }
 
-    return PRICE_PER_HOUR * days * hrsPerDay;
+    Double base =  PRICE_PER_HOUR * days * hrsPerDay;
+    return addPetFee(base);
   }
 
   /* ===== Object Overrides ===== */

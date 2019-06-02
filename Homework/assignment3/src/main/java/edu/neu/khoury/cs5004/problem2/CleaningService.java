@@ -43,6 +43,8 @@ public class CleaningService extends AbstractInteriorService {
       default:
         throw new IllegalStateException("Unexpected value: " + getPropertySize());
     }
+
+    price = addPetFee(price);
     return price;
   }
 

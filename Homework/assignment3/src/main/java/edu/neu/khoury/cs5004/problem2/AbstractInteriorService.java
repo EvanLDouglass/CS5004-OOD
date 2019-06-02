@@ -33,6 +33,26 @@ public abstract class AbstractInteriorService extends AbstractService {
     this.numPetsAtAddr = numPetsAtAddr;
   }
 
+  /* ===== Methods ===== */
+
+  /**
+   * Calculates a fee based on the number of pets in the service property and
+   * adds it to the sub-total (base price).
+   *
+   * @param basePrice the price of labor before fees
+   * @return the final price with a fee added if necessary
+   */
+  protected Double addPetFee(Double basePrice) {
+    Double percent = 0.0;  // no fee if no pets
+    if (numPetsAtAddr > 2) {
+      percent = 0.07;      // 7% for 3 or more
+    } else if (numPetsAtAddr > 0) {
+      percent = 0.05;      // 5% for 1 or 2
+    }
+
+    return basePrice + (basePrice * percent);
+  }
+
   /* ===== Object Overrides ===== */
 
   @Override
