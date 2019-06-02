@@ -1,6 +1,6 @@
 package edu.neu.khoury.cs5004.problem2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class PaintingServiceTest {
         "1-A",
         "123 4th",
         PropertySize.SMALL,
-        true,
+        false,
         3,
         1
     );
@@ -72,7 +72,7 @@ public class PaintingServiceTest {
         "1-A",
         "123 4th",
         PropertySize.MEDIUM,
-        true,
+        false,
         3,
         2
     );
@@ -82,7 +82,7 @@ public class PaintingServiceTest {
         "1-A",
         "123 4th",
         PropertySize.LARGE,
-        true,
+        false,
         3,
         3
     );

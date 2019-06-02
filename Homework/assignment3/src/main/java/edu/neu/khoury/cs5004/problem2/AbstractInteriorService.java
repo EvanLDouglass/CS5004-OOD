@@ -36,8 +36,8 @@ public abstract class AbstractInteriorService extends AbstractService {
   /* ===== Methods ===== */
 
   /**
-   * Calculates a fee based on the number of pets in the service property and
-   * adds it to the sub-total (base price).
+   * Calculates a fee based on the number of pets in the service property and adds it to the
+   * sub-total (base price).
    *
    * @param basePrice the price of labor before fees
    * @return the final price with a fee added if necessary

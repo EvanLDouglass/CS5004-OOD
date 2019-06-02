@@ -1,6 +1,6 @@
 package edu.neu.khoury.cs5004.problem2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class GardeningServiceTest {
   public void toString1() {
     String result =
         "GardeningService: invoice=0001 address='1st Ave' size=Small "
-        + "monthly=false serviced=1 month=12";
+            + "monthly=false serviced=1 month=12";
     assertEquals(result, service.toString());
   }
 }

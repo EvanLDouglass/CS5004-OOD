@@ -46,10 +46,7 @@ public abstract class AbstractExteriorService extends AbstractService {
    * @return {@code true} if the month is in the valid range, else {@code false}
    */
   private boolean isMonthValid(Integer month) {
-    if (month < 1 || month > 12) {
-      return false;
-    }
-    return true;
+    return month >= 1 && month <= 12;
   }
 
   /* ===== Object Overrides ===== */

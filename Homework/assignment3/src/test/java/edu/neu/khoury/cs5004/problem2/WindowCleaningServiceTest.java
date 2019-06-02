@@ -1,6 +1,7 @@
 package edu.neu.khoury.cs5004.problem2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -112,7 +113,7 @@ public class WindowCleaningServiceTest {
   public void toString1() {
     String result =
         "WindowCleaningService: invoice=0001 address='2432 9th' "
-        + "size=Small monthly=false serviced=5 month=4 floors=1";
+            + "size=Small monthly=false serviced=5 month=4 floors=1";
     assertEquals(result, service.toString());
   }
 

@@ -3,14 +3,14 @@ package edu.neu.khoury.cs5004.problem2;
 import java.util.Objects;
 
 /**
- * An {@code AbstractService} contains data and some functionality of a general
- * service offered by the company, as described in the {@code Service} interface.
+ * An {@code AbstractService} contains data and some functionality of a general service offered by
+ * the company, as described in the {@code Service} interface.
  *
  * @author evandouglass
  */
 public abstract class AbstractService implements Service {
 
-  public static Double PRICE_PER_HOUR = 80.0;
+  public static final Double PRICE_PER_HOUR = 80.0;
 
   private String invoiceID;
   private String serviceAddress;
@@ -29,7 +29,7 @@ public abstract class AbstractService implements Service {
    */
   public AbstractService(String invoiceID, String serviceAddress,
       PropertySize propertySize, boolean isMonthlyService, Integer numServicesAtAddr)
-        throws IllegalArgumentException {
+      throws IllegalArgumentException {
     if (isNegative(numServicesAtAddr)) {
       throw new IllegalArgumentException("can't have a negative number of services");
     }
@@ -44,12 +44,11 @@ public abstract class AbstractService implements Service {
   /* ===== Methods ===== */
 
   /**
-   * Gives a loyalty discount for a service that monthly or is the 10th
-   * in a row. The discounts are mutually exclusive.
+   * Gives a loyalty discount for a service that monthly or is the 10th in a row. The discounts are
+   * mutually exclusive.
    *
    * @param base the base price
-   * @return a discounted base price, if one of the loyalty discounts can
-   * be applied.
+   * @return a discounted base price, if one of the loyalty discounts can be applied.
    */
   Double giveLoyaltyDiscount(Double base) {
     if (numServicesAtAddr % 10 == 9) {  // means this service will be 10th
@@ -61,12 +60,11 @@ public abstract class AbstractService implements Service {
   }
 
   /**
-   * If this service is performed monthly, this method gives a 10%
-   * discount from the base price.
+   * If this service is performed monthly, this method gives a 10% discount from the base price.
    *
    * @param base the base price
-   * @return the price after a discount is applied, or the same price depending
-   * on if the service is monthly
+   * @return the price after a discount is applied, or the same price depending on if the service is
+   *     monthly
    */
   private Double giveMonthlyDiscount(Double base) {
     Double percent = 0.1;
@@ -74,12 +72,12 @@ public abstract class AbstractService implements Service {
   }
 
   /**
-   * If this service will be the tenth in a row, this method gives a
-   * 50% discount from the base price.
+   * If this service will be the tenth in a row, this method gives a 50% discount from the base
+   * price.
    *
    * @param base the base price
-   * @return the price after a discount is applied, or the same price depending
-   * on if the service is the tenth in a row
+   * @return the price after a discount is applied, or the same price depending on if the service is
+   *     the tenth in a row
    */
   private Double giveEveryTenthDiscount(Double base) {
     return base / 2;
