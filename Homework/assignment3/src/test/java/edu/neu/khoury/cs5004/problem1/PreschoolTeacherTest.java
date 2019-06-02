@@ -16,7 +16,7 @@ public class PreschoolTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        10,
         1
     );
   }
@@ -81,7 +81,7 @@ public class PreschoolTeacherTest {
   @Test
   public void toString1() {
     String result = "PreschoolTeacher: name=Evan Douglass classroom=306 coTeacher=John Johns "
-        + "onVacation=false numChildren=2 maxChildren=8 childrenCanRead=1";
+        + "onVacation=false numChildren=2 maxChildren=10 childrenCanRead=1";
     assertEquals(result, t.toString());
   }
 
@@ -92,7 +92,7 @@ public class PreschoolTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        10,
         1
     );
     assertEquals(t2, t);
@@ -108,7 +108,7 @@ public class PreschoolTeacherTest {
         new Name("John", "Johns"),
         false,
         2,
-        8,
+        10,
         1
     );
     assertEquals(t2.hashCode(), t.hashCode());

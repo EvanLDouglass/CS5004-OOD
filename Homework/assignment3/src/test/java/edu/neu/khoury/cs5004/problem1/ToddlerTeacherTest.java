@@ -88,7 +88,7 @@ public class ToddlerTeacherTest {
   @Test
   public void toString1() {
     String result = "ToddlerTeacher: name=Evan Douglass classroom=306 coTeacher=John Johns "
-        + "onVacation=false numChildren=2 maxChildren=8 childrenInDiapers=1 childrenPottyTrained=1";
+        + "onVacation=false numChildren=2 maxChildren=7 childrenInDiapers=1 childrenPottyTrained=1";
     assertEquals(result, t.toString());
   }
 

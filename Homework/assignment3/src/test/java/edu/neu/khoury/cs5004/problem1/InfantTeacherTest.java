@@ -88,6 +88,16 @@ public class InfantTeacherTest {
     assertEquals(8, (int) t.getMaxChildren());
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void badConversiontoFullTime() {
+    SubstituteTeacher sub = new SubstituteTeacher(new Name("Marge", "Simpson"),
+        "307",
+        new Name("", ""),
+        false,
+        5);
+    FullTimeTeacher teacher = t.convertSubstituteTeacher(sub, "Highschool", t);
+  }
+
   @Test
   public void toString1() {
     // The super class toString methods are strung together
@@ -100,8 +110,8 @@ public class InfantTeacherTest {
 
   @Test
   public void equals1() {
-    // The super class equals methods are strung together
-    // so this will test all of them.
+    assertEquals(t, t);
+
     InfantTeacher t2 = new InfantTeacher(
         new Name("Evan", "Douglass"),
         "306",
