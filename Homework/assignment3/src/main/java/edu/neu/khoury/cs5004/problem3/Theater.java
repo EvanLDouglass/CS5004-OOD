@@ -15,6 +15,7 @@ public class Theater {
   private Integer numRows;
   private Integer seatsPerRow;
 
+  // TODO: update class for accessibility. Row taken care of.
   /**
    * Constructor for a theater.
    *

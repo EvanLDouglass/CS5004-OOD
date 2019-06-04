@@ -15,6 +15,7 @@ public class Row extends ArrayList<Seat> {
   private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   private Integer rowNum;
+  private Boolean isAccessible;
 
   /**
    * Constructor for a row of seats.
@@ -22,12 +23,13 @@ public class Row extends ArrayList<Seat> {
    * @param initialCapacity the number of seats in a row
    * @param rowNum the row number, (1 is closest to the screen, increasing numbers are further)
    */
-  public Row(int initialCapacity, Integer rowNum) {
+  public Row(int initialCapacity, Integer rowNum, Boolean isAccessible) {
     super(initialCapacity);
     validateSeatsInRow(initialCapacity);
     validateRowNum(rowNum);
 
     this.rowNum = rowNum;
+    this.isAccessible = isAccessible;
     // Create a list of unreserved seats
     for (int i = 0; i < initialCapacity; i++) {
       String name = String.valueOf(ALPHABET.charAt(i));
@@ -38,8 +40,7 @@ public class Row extends ArrayList<Seat> {
   /* ===== Methods ===== */
 
   /**
-   * Gets the index of a seat name in a row. This test is
-   * not case-sensitive (a == A).
+   * Gets the index of a seat name in a row. This test is not case-sensitive (a == A).
    *
    * @param name the name of the seat (A-Z)
    * @return the index of the seat, or -1 if not found
@@ -100,6 +101,9 @@ public class Row extends ArrayList<Seat> {
     }
     builder.append(" : Row ");
     builder.append(rowNum);
+    if (isAccessible) {
+      builder.append("♿");  // UTF-8 code: U+267F
+    }
 
     return builder.toString();
   }
@@ -122,7 +126,8 @@ public class Row extends ArrayList<Seat> {
       return false;
     }
     Row seats = (Row) o;
-    return rowNum.equals(seats.rowNum);
+    return rowNum.equals(seats.rowNum)
+        && isAccessible.equals(seats.isAccessible);
   }
 
   /**
@@ -132,7 +137,7 @@ public class Row extends ArrayList<Seat> {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode(), rowNum);
+    return Objects.hash(super.hashCode(), rowNum, isAccessible);
   }
 
   /* ===== Getters ===== */
@@ -144,5 +149,14 @@ public class Row extends ArrayList<Seat> {
    */
   public Integer getRowNum() {
     return rowNum;
+  }
+
+  /**
+   * Determines if this row is wheelchair accessible.
+   *
+   * @return true if accessible, else false
+   */
+  public Boolean isAccessible() {
+    return isAccessible;
   }
 }

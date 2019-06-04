@@ -12,28 +12,28 @@ public class RowTest {
 
   @Before
   public void setUp() throws Exception {
-    rowMax = new Row(26, 1);
-    rowMin = new Row(1, 30);
+    rowMax = new Row(26, 1, true);
+    rowMin = new Row(1, 30, false);
   }
 
   @Test
   public void badSetUp() {
     try {
-      rowMax = new Row(27, 9);
+      rowMax = new Row(27, 9, false);
       fail("number of seats in row is too big");
     } catch (IllegalArgumentException e) {
       // Passed
     }
 
     try {
-      rowMax = new Row(0, 9);
+      rowMax = new Row(0, 9, false);
       fail("number of seats in row is too small");
     } catch (IllegalArgumentException e) {
       // Passed
     }
 
     try {
-      rowMax = new Row(15, 0);
+      rowMax = new Row(15, 0, false);
       fail("row number is less than 1");
     } catch (IllegalArgumentException e) {
       // Passed
@@ -58,10 +58,10 @@ public class RowTest {
 
   @Test
   public void toString1() {
-    String expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ : Row 1";
+    String expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ: Row 1 ♿";  // utf-8 wheelchair symbol included
     assertEquals(expected, rowMax.toString());
 
-    expected = "A : Row 30";
+    expected = "A : Row 30";  // not wheelchair accessible
     assertEquals(expected, rowMin.toString());
 
     rowMin.get(0).setReservedFor("Evan");
@@ -72,7 +72,7 @@ public class RowTest {
     rowMax.get(3).setReservedFor("Rachel");
     rowMax.get(4).setReservedFor("Frankie");
     rowMax.get(25).setReservedFor("Bob");
-    expected = "AB---FGHIJKLMNOPQRSTUVWXY- : Row 1";
+    expected = "AB---FGHIJKLMNOPQRSTUVWXY- : Row 1 ♿";
     assertEquals(expected, rowMax.toString());
   }
 
@@ -87,12 +87,18 @@ public class RowTest {
   @Test
   public void hashCode1() {
     assertNotEquals(rowMax.hashCode(), rowMin.hashCode());
-    assertEquals(rowMin.hashCode(), new Row(1, 30).hashCode());
+    assertEquals(rowMin.hashCode(), new Row(1, 30, false).hashCode());
   }
 
   @Test
   public void getRowNum() {
     assertEquals(1, (int) rowMax.getRowNum());
     assertEquals(30, (int) rowMin.getRowNum());
+  }
+
+  @Test
+  public void getAccessible() {
+    assertTrue(rowMax.isAccessible());
+    assertFalse(rowMin.isAccessible());
   }
 }
