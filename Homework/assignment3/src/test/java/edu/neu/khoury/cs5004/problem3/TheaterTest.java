@@ -15,7 +15,26 @@ public class TheaterTest {
 
   @Before
   public void setUp() throws Exception {
-    t = new Theater("one", 5, 6);
+    Integer[] accessible = new Integer[]{1, 5};
+    t = new Theater("one", 5, 6, accessible);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void emptyAccessibleRows() {
+    Integer[] accessible = new Integer[]{};
+    t = new Theater("one", 5, 6, accessible);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void NoValidAccessibleRows() {
+    Integer[] accessible = new Integer[]{7, 9, 10, 8};
+    t = new Theater("one", 5, 6, accessible);
+  }
+
+  @Test
+  public void oneValidAccessibleRow() {
+    Integer[] accessible = new Integer[]{7, 9, 1, 8};
+    t = new Theater("one", 5, 6, accessible);
   }
 
   @Test
@@ -64,20 +83,20 @@ public class TheaterTest {
   @Test
   public void toString1() {
     String result = "======\n"
-        + "ABCDEF : Row 1\n"
+        + "ABCDEF : Row 1♿\n"
         + "ABCDEF : Row 2\n"
         + "ABCDEF : Row 3\n"
         + "ABCDEF : Row 4\n"
-        + "ABCDEF : Row 5\n";
+        + "ABCDEF : Row 5♿\n";
     assertEquals(result, t.toString());
 
     t.reserveSeat(3, 'C', "Evan");
     result = "======\n"
-        + "ABCDEF : Row 1\n"
+        + "ABCDEF : Row 1♿\n"
         + "ABCDEF : Row 2\n"
         + "AB-DEF : Row 3\n"
         + "ABCDEF : Row 4\n"
-        + "ABCDEF : Row 5\n";
+        + "ABCDEF : Row 5♿\n";
     assertEquals(result, t.toString());
   }
 
@@ -87,24 +106,29 @@ public class TheaterTest {
     assertNotEquals(null, t);
     assertNotEquals("Hello", t);
 
-    Theater t1 = new Theater("one", 5, 6);
+    Integer[] accessible = new Integer[]{1, 5};
+    Theater t1 = new Theater("one", 5, 6, accessible);
     assertEquals(t1, t);
-    t1 = new Theater("two", 5, 6);
+    t1 = new Theater("two", 5, 6, accessible);
     assertNotEquals(t1, t);
-    t1 = new Theater("one", 3, 6);
+    t1 = new Theater("one", 3, 6, accessible);
     assertNotEquals(t1, t);
-    t1 = new Theater("one", 5, 9);
+    t1 = new Theater("one", 5, 9, accessible);
     assertNotEquals(t1, t);
-    t1 = new Theater("two", 9, 2);
+    t1 = new Theater("two", 9, 2, accessible);
+    assertNotEquals(t1, t);
+    accessible[0] = 2;
+    t1 = new Theater("one", 5, 6, accessible);
     assertNotEquals(t1, t);
   }
 
   @Test
   public void hashCode1() {
-    Theater t1 = new Theater("one", 5, 6);
+    Integer[] accessible = new Integer[]{1, 5};
+    Theater t1 = new Theater("one", 5, 6, accessible);
     assertEquals(t1.hashCode(), t.hashCode());
 
-    t1 = new Theater("two", 5, 6);
+    t1 = new Theater("two", 5, 6, accessible);
     assertNotEquals(t1.hashCode(), t.hashCode());
   }
 
@@ -116,10 +140,16 @@ public class TheaterTest {
   @Test
   public void getRows() {
     ArrayList<Row> rows1 = t.getRows();
+    Row row;
 
-    for (int i = 0; i < 5; i++) {
-      Row row = rows1.get(i);
-      assertEquals(new Row(6, i + 1), row);
+    row = rows1.get(0);
+    assertEquals(new Row(6, 1, true), row);
+    row = rows1.get(4);
+    assertEquals(new Row(6, 5, true), row);
+
+    for (int i = 1; i < 4; i++) {
+      row = rows1.get(i);
+      assertEquals(new Row(6, i + 1, false), row);
     }
   }
 

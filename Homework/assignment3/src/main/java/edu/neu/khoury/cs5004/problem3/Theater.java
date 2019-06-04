@@ -1,6 +1,7 @@
 package edu.neu.khoury.cs5004.problem3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -12,22 +13,26 @@ public class Theater {
 
   private String name;
   private ArrayList<Row> rows;
+  private Integer[] accessibleRows;
   private Integer numRows;
   private Integer seatsPerRow;
 
-  // TODO: update class for accessibility. Row taken care of.
   /**
    * Constructor for a theater.
    *
    * @param name the name of the theater
    * @param numRows the number of rows in the theater
    * @param seatsPerRow the number of seats in each row
+   * @param accessibleRows an array of integers representing row numbers that are wheelchair
+   *     accessible.
    */
-  public Theater(String name, Integer numRows, Integer seatsPerRow) {
+  public Theater(String name, Integer numRows, Integer seatsPerRow,
+      Integer[] accessibleRows) {
     this.name = name;
     this.numRows = numRows;
     this.seatsPerRow = seatsPerRow;
-
+    this.accessibleRows = accessibleRows;
+    validateAccessibleRows();
     populateRows();
   }
 
@@ -39,10 +44,10 @@ public class Theater {
    * @param row the row number (1-indexed)
    * @param seat the seat name (A-Z)
    * @param name the name of the person who reserved this seat
-   * @throws IndexOutOfBoundsException if the row number is not in the theater
-   *     or the seat name is not in the theater
-   * @throws IllegalArgumentException if the name of the person reserving the
-   *     seat is an empty string
+   * @throws IndexOutOfBoundsException if the row number is not in the theater or the seat name is
+   *     not in the theater
+   * @throws IllegalArgumentException if the name of the person reserving the seat is an empty
+   *     string
    */
   public void reserveSeat(Integer row, Character seat, String name)
       throws IndexOutOfBoundsException, IllegalArgumentException {
@@ -62,8 +67,49 @@ public class Theater {
   private void populateRows() {
     rows = new ArrayList<Row>(numRows);
     for (int i = 1; i <= numRows; i++) {
-      rows.add(new Row(seatsPerRow, i));
+      if (isRowAccessible(i)) {
+        rows.add(new Row(seatsPerRow, i, true));
+      } else {
+        rows.add(new Row(seatsPerRow, i, false));
+      }
     }
+  }
+
+  /**
+   * Checks if a given row number is designated as an accessible row.
+   *
+   * @param row the row number to check
+   * @return true if the row is accessible, else false
+   */
+  private boolean isRowAccessible(Integer row) {
+    for (int i = 0; i < accessibleRows.length; i++) {
+      if (row == accessibleRows[i]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Ensures that the accessibleRows array has at least one row that is inside this theater.
+   *
+   * @throws IllegalArgumentException if the array is empty or all given row numbers are greater
+   *     than the number of rows in the theater
+   */
+  private void validateAccessibleRows() throws IllegalArgumentException {
+    if (accessibleRows == null || accessibleRows.length == 0) {
+      throw new IllegalArgumentException("must be at least one accessible row");
+    }
+
+    for (Integer row : accessibleRows) {
+      if (row <= numRows) {
+        // If there is at least one row inside the theater that is accessible
+        // then there is no problem.
+        return;
+      }
+    }
+    // If all row numbers are too big for the theater, there is a problem.
+    throw new IllegalArgumentException("the given rows are too big for this theater");
   }
 
   /* ===== Object Overrides ===== */
@@ -110,7 +156,8 @@ public class Theater {
     return Objects.equals(name, theater.name)
         && Objects.equals(rows, theater.rows)
         && Objects.equals(numRows, theater.numRows)
-        && Objects.equals(seatsPerRow, theater.seatsPerRow);
+        && Objects.equals(seatsPerRow, theater.seatsPerRow)
+        && Arrays.equals(accessibleRows, theater.accessibleRows);
   }
 
   /**
@@ -120,7 +167,7 @@ public class Theater {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(name, rows, numRows, seatsPerRow);
+    return Objects.hash(name, rows, numRows, seatsPerRow, Arrays.hashCode(accessibleRows));
   }
 
   /* ===== Getters ===== */
@@ -159,5 +206,14 @@ public class Theater {
    */
   public Integer getSeatsPerRow() {
     return seatsPerRow;
+  }
+
+  /**
+   * Gets the array of accessible rows.
+   *
+   * @return the array of accessible rows
+   */
+  public Integer[] getAccessibleRows() {
+    return accessibleRows;
   }
 }

@@ -58,7 +58,8 @@ public class Seat {
    */
   private void validateName(String name) throws IllegalArgumentException {
     if (name.length() != 1) {
-      throw new IllegalArgumentException("name must be a single character, got length: " + name.length());
+      throw new IllegalArgumentException(
+          "name must be a single character, got length: " + name.length());
     }
     if (!Character.isAlphabetic(name.charAt(0))) {
       throw new IllegalArgumentException("name is not alphabetic, got: " + name);
@@ -98,8 +99,8 @@ public class Seat {
       return false;
     }
     Seat seat = (Seat) o;
-    return name.equals(seat.name) &&
-        Objects.equals(reservedFor, seat.reservedFor);
+    return name.equals(seat.name)
+        && Objects.equals(reservedFor, seat.reservedFor);
   }
 
   /**

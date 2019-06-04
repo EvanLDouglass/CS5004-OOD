@@ -1,6 +1,10 @@
 package edu.neu.khoury.cs5004.problem3;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +62,7 @@ public class RowTest {
 
   @Test
   public void toString1() {
-    String expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ: Row 1 ♿";  // utf-8 wheelchair symbol included
+    String expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ : Row 1♿";  // utf-8 wheelchair symbol included
     assertEquals(expected, rowMax.toString());
 
     expected = "A : Row 30";  // not wheelchair accessible
@@ -72,7 +76,7 @@ public class RowTest {
     rowMax.get(3).setReservedFor("Rachel");
     rowMax.get(4).setReservedFor("Frankie");
     rowMax.get(25).setReservedFor("Bob");
-    expected = "AB---FGHIJKLMNOPQRSTUVWXY- : Row 1 ♿";
+    expected = "AB---FGHIJKLMNOPQRSTUVWXY- : Row 1♿";
     assertEquals(expected, rowMax.toString());
   }
 
