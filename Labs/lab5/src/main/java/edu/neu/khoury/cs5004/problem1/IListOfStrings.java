@@ -5,7 +5,7 @@ package edu.neu.khoury.cs5004.problem1;
  *
  * @author evandouglass
  */
-public interface ListOfStrings {
+public interface IListOfStrings {
 
   /**
    * Checks whether or not the list is empty.
@@ -35,7 +35,7 @@ public interface ListOfStrings {
    * @param strs a list of strings to check
    * @return true if this list contains all of the given strings, else false
    */
-  Boolean containsAll(ListOfStrings strs);
+  Boolean containsAll(IListOfStrings strs);
 
   /**
    * Creates a list that has only the elements in this list that have a shorter length than the
@@ -44,7 +44,7 @@ public interface ListOfStrings {
    * @param len the maximum length to filter on
    * @return a list with only those strings that are smaller than or equal to the max length
    */
-  ListOfStrings filterLargerThan(Integer len);
+  IListOfStrings filterLargerThan(Integer len);
 
   /**
    * Checks if this list has any duplicate elements.
@@ -58,5 +58,42 @@ public interface ListOfStrings {
    *
    * @return A list with any duplicates removed
    */
-  ListOfStrings removeDuplicates();
+  IListOfStrings removeDuplicates();
+
+  /**
+   * Prepends the given string to this list.
+   *
+   * @param str the string to add
+   * @return the new list with this string
+   */
+  IListOfStrings add(String str);
+
+  /**
+   * Test equality between this and another object.
+   *
+   * @param o the object to test
+   * @return true if the objects are equal, else false
+   */
+  boolean equals(Object o);
+
+  /**
+   * Generates a hash code for this object.
+   *
+   * @return a hash code
+   */
+  int hashCode();
+
+  /**
+   * Get the string payload.
+   *
+   * @return the string payload
+   */
+  String getPayload();
+
+  /**
+   * Gets the rest of this list.
+   *
+   * @return the rest of the list
+   */
+  IListOfStrings getRest();
 }
