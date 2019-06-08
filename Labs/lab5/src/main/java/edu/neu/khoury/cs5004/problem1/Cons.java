@@ -51,7 +51,7 @@ public class Cons implements IListOfStrings {
     }
 
     Boolean hasOne = this.contains(strs.getPayload());
-    if (! hasOne) {
+    if (!hasOne) {
       return false;
     }
 
@@ -80,7 +80,7 @@ public class Cons implements IListOfStrings {
 
   @Override
   public IListOfStrings removeDuplicates() {
-    if (! rest.contains(payload)) {
+    if (!rest.contains(payload)) {
       return new Cons(payload, rest.removeDuplicates());
     }
     return rest.removeDuplicates();
@@ -100,8 +100,8 @@ public class Cons implements IListOfStrings {
       return false;
     }
     Cons cons = (Cons) o;
-    return payload.equals(cons.payload) &&
-        rest.equals(cons.rest);
+    return payload.equals(cons.payload)
+        && rest.equals(cons.rest);
   }
 
   @Override

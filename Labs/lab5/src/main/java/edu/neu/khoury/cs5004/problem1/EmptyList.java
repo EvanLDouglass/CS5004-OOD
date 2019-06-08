@@ -1,7 +1,5 @@
 package edu.neu.khoury.cs5004.problem1;
 
-import java.util.Objects;
-
 /**
  * {@code EmptyIList} represents an empty list. It is used in the recursive implementation of a
  * {@code IListOfStrings}.
