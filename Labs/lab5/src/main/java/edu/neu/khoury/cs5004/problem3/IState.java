@@ -15,6 +15,10 @@ public interface IState {
    * <li>Scissors beats Paper</li>
    * <li>Paper beats Rock</li>
    * </ul>
+   * Will return false if other is the same type as the calling object.
+   * During game play, an implementation must check if both player's choices
+   * return false, indicating both are the same state, and thus, a draw has
+   * occurred.
    *
    * @param other the other state
    * @return true if this state beats the other, else false
