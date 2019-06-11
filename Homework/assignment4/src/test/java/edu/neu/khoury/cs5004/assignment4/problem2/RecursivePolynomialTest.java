@@ -114,14 +114,92 @@ public class RecursivePolynomialTest {
         )
     );
     IPolynomial poly3 = poly.add(poly2);
-    assertEquals(-8, (int) poly3.getCoefficient(3));
-    assertEquals(4, (int) poly3.getCoefficient(2));
-    assertEquals(-6, (int) poly3.getCoefficient(1));
-    assertEquals(10, (int) poly3.getCoefficient(0));
-    assertEquals(0, (int) poly3.getCoefficient(15));
+    assertTrue(poly3.isSame(expected));
+    poly3 = poly2.add(poly);
+    assertTrue(poly3.isSame(expected));
   }
 
-  // TODO: Test Add with diff len polys and mixed power polys
+  @Test
+  public void add_OneEmpty() {
+    IPolynomial poly2 = new RecursivePolynomial();
+    IPolynomial expected = new RecursivePolynomial(-4, 3,
+        new RecursivePolynomial(2, 2,
+            new RecursivePolynomial(-3, 1,
+                new RecursivePolynomial(5, 0,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    IPolynomial poly3 = poly.add(poly2);
+    assertTrue(poly3.isSame(expected));
+    poly3 = poly2.add(poly);
+    assertTrue(poly3.isSame(expected));
+  }
+
+  @Test
+  public void add_DiffPowers() {
+    IPolynomial poly2 = new RecursivePolynomial(-4, 10,
+        new RecursivePolynomial(2, 9,
+            new RecursivePolynomial(-3, 8,
+                new RecursivePolynomial(5, 7,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    IPolynomial expected = new RecursivePolynomial(-4, 3,
+        new RecursivePolynomial(2, 2,
+            new RecursivePolynomial(-3, 1,
+                new RecursivePolynomial(5, 0,
+                    new RecursivePolynomial(-4, 10,
+                        new RecursivePolynomial(2, 9,
+                            new RecursivePolynomial(-3, 8,
+                                new RecursivePolynomial(5, 7,
+                                    new RecursivePolynomial()
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    );
+    IPolynomial poly3 = poly.add(poly2);
+    assertTrue(poly3.isSame(expected));
+    poly3 = poly2.add(poly);
+    assertTrue(poly3.isSame(expected));
+  }
+
+  @Test
+  public void add_SomeSameSomeDiff() {
+    IPolynomial poly2 = new RecursivePolynomial(-4, 3,
+        new RecursivePolynomial(2, 9,
+            new RecursivePolynomial(-3, 1,
+                new RecursivePolynomial(5, 7,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    IPolynomial expected = new RecursivePolynomial(-8, 3,
+        new RecursivePolynomial(2, 2,
+            new RecursivePolynomial(-6, 1,
+                new RecursivePolynomial(5, 0,
+                    new RecursivePolynomial(2, 9,
+                        new RecursivePolynomial(5, 7,
+                            new RecursivePolynomial()
+                        )
+                    )
+                )
+            )
+        )
+    );
+    IPolynomial poly3 = poly.add(poly2);
+    assertTrue(poly3.isSame(expected));
+    poly3 = poly2.add(poly);
+    assertTrue(poly3.isSame(expected));
+  }
 
   @Test
   public void multiply() {

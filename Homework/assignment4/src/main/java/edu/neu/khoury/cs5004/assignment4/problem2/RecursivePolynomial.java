@@ -41,7 +41,7 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public IPolynomial removeTerm(Integer power) {
-    if (this.power == null) {
+    if (isEmpty() || power == null) {
       return this;
     }
     if (!this.power.equals(power)) {
@@ -52,7 +52,7 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public Integer getDegree() {
-    if (power == null || rest == null) {
+    if (isEmpty()) {
       return -1;
     }
     return Math.max(power, rest.getDegree());
@@ -60,7 +60,7 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public Integer getCoefficient(Integer power) {
-    if (this.power == null || coefficient == null || rest == null) {
+    if (isEmpty() || power == null) {
       return 0;
     }
     if (power.equals(this.power)) {
@@ -71,19 +71,22 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public Boolean isSame(IPolynomial other) {
-    // TODO: What is wrong here? How to make this work?
-    if ((coefficient == null || power == null || rest == null)
-        && other.getDegree() == -1) {
-      return true;
+    if (other.getDegree() == -1) {
+      if (isEmpty()) {
+        // both are empty
+        return true;
+      }
+      // this is not empty
+      return false;
     }
-    Integer otherCoeff = other.getCoefficient(power);
-    Boolean areTermsSame = otherCoeff.equals(coefficient);
-    return areTermsSame && rest.isSame(other);
+    Integer otherCoef = other.getCoefficient(power);
+    other = other.removeTerm(power);
+    return (otherCoef.equals(coefficient)) && rest.isSame(other);
   }
 
   @Override
   public Double evaluate(Double value) {
-    if (coefficient == null || power == null || rest == null) {
+    if (isEmpty()) {
       return 0.0;
     }
     Double termVal = (coefficient * Math.pow(value, power));
@@ -95,16 +98,17 @@ public class RecursivePolynomial implements IPolynomial {
     if (other.getDegree() == -1) {
       return this;
     }
-    if (coefficient == null || power == null || rest == null) {
+    if (isEmpty()) {
       return other;
     }
     Integer newCoeff = coefficient + other.getCoefficient(power);
+    other = other.removeTerm(power);
     return new RecursivePolynomial(newCoeff, power, rest.add(other));
   }
 
   @Override
   public IPolynomial multiply(IPolynomial other) {
-    if (coefficient == null) {
+    if (isEmpty()) {
       return this;
     }
     Integer deg = other.getDegree();
@@ -119,7 +123,7 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public String toString() {
-    if (coefficient == null || power == null || rest == null) {
+    if (isEmpty()) {
       return "";
     }
 
@@ -134,5 +138,14 @@ public class RecursivePolynomial implements IPolynomial {
     }
 
     return term + rest.toString();
+  }
+
+  /**
+   * Checks if any field is null, indicating an empty list.
+   *
+   * @return true if any field is null, else false
+   */
+  private Boolean isEmpty() {
+    return coefficient == null || power == null || rest == null;
   }
 }

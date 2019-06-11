@@ -40,6 +40,8 @@ public interface IPolynomial {
 
   /**
    * Determines if another polynomial is equivalent to this one.
+   * Does not consider the ordering of the terms, as this does not matter
+   * in mathematics.
    *
    * @param other the other polynomial to test
    * @return true if they are equivalent, else false
