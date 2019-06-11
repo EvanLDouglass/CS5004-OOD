@@ -33,7 +33,10 @@ public class RecursivePolynomial implements IPolynomial {
     if (coefficient.equals(0)) {
       return this;
     }
-    return new RecursivePolynomial(coefficient, power, this);
+    // remove current term with this power if there is one
+    IPolynomial rest = removeTerm(power);
+    // replace the term with the new coefficient
+    return new RecursivePolynomial(coefficient, power, rest);
   }
 
   @Override
@@ -49,7 +52,7 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public Integer getDegree() {
-    if (coefficient == null || power == null || rest == null) {
+    if (power == null || rest == null) {
       return -1;
     }
     return Math.max(power, rest.getDegree());
@@ -68,19 +71,19 @@ public class RecursivePolynomial implements IPolynomial {
 
   @Override
   public Boolean isSame(IPolynomial other) {
-    if (other.getDegree() == -1 && getDegree() == -1) {
+    // TODO: What is wrong here? How to make this work?
+    if ((coefficient == null || power == null || rest == null)
+        && other.getDegree() == -1) {
       return true;
     }
-    if (other.getDegree() == -1 || getDegree() == -1) {
-      return false;
-    }
     Integer otherCoeff = other.getCoefficient(power);
-    return (otherCoeff.equals(coefficient)) && rest.isSame(other);
+    Boolean areTermsSame = otherCoeff.equals(coefficient);
+    return areTermsSame && rest.isSame(other);
   }
 
   @Override
   public Double evaluate(Double value) {
-    if (coefficient == 0 && power == 0) {
+    if (coefficient == null || power == null || rest == null) {
       return 0.0;
     }
     Double termVal = (coefficient * Math.pow(value, power));
