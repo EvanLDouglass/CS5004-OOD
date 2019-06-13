@@ -158,6 +158,7 @@ public class RecursivePolynomial implements IPolynomial {
   /**
    * Recursive helper for the toString method.
    *
+   * @param poly a polynomial to turn into a string
    * @return a string representation of this object
    */
   public String toStringHelper(IPolynomial poly) {

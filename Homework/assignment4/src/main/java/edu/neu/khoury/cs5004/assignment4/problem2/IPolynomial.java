@@ -10,16 +10,19 @@ public interface IPolynomial {
 
   /**
    * Adds the term defined by the given coefficient and power to this polynomial.
+   * Ignores coefficients with a value of zero.
    *
    * @param coefficient the coefficient of this term
    * @param power the power of this term
+   * @return a polynomial with the added term
    */
   IPolynomial addTerm(Integer coefficient, Integer power);
 
   /**
-   * Removes the term of the given power from this polynomial.
+   * Removes the term of the given power from this polynomial, if it has one.
    *
    * @param power the power of the term to remove
+   * @return a polynomial with the term of the given power removed
    */
   IPolynomial removeTerm(Integer power);
 
@@ -50,8 +53,8 @@ public interface IPolynomial {
 
   /**
    * Calculates the polynomial evaluated against the given value. In other words, substitutes the
-   * given value for all the variables in the polynomial. For example, given a value of 2.0: 2x^2 ->
-   * 2(2.0)^2 -> 8.0
+   * given value for all the variables in the polynomial. For example, given a value of 2.0: 2x^2 ==
+   * 2(2.0)^2 == 8.0
    *
    * @param value the value at which to evaluate the polynomial
    * @return a value calculated from the polynomial and given value

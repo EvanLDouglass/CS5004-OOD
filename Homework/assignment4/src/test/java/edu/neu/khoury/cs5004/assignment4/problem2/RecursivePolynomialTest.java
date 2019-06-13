@@ -338,4 +338,34 @@ public class RecursivePolynomialTest {
     poly = new RecursivePolynomial();
     assertEquals("", poly.toString());
   }
+
+  @Test
+  public void toStringMoreOnes() {
+    poly = new RecursivePolynomial(-1, 3,
+        new RecursivePolynomial(1, 9,
+            new RecursivePolynomial(1, 1,
+                new RecursivePolynomial(-1, 0,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    String expected = "x^9 - x^3 + x - 1";
+    assertEquals(expected, poly.toString());
+  }
+
+  @Test
+  public void toStringSlightlyMoreOnes() {
+    poly = new RecursivePolynomial(1, 3,
+        new RecursivePolynomial(-1, 9,
+            new RecursivePolynomial(-1, 1,
+                new RecursivePolynomial(1, 0,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    String expected = "-x^9 + x^3 - x + 1";
+    assertEquals(expected, poly.toString());
+  }
 }
