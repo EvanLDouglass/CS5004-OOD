@@ -17,7 +17,7 @@ public class EmptyBag implements BagOfWords {
 
   @Override
   public BagOfWords add(String str) {
-    return new RecursiveBagOfWords(str);
+    return new RecursiveBagOfWords(str, this);
   }
 
   @Override
