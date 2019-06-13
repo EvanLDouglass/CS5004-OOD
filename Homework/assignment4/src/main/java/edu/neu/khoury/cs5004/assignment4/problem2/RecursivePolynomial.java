@@ -161,7 +161,7 @@ public class RecursivePolynomial implements IPolynomial {
    * @param poly a polynomial to turn into a string
    * @return a string representation of this object
    */
-  public String toStringHelper(IPolynomial poly) {
+  private String toStringHelper(IPolynomial poly) {
     Integer degree = poly.getDegree();
     if (degree == -1) {
       return "";
