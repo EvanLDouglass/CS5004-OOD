@@ -1,6 +1,8 @@
 package edu.neu.khoury.cs5004.assignment4.problem2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -202,12 +204,138 @@ public class RecursivePolynomialTest {
   }
 
   @Test
+  public void add_MakeAZeroCoeff() {
+    IPolynomial poly2 = new RecursivePolynomial(-4, 3,
+        new RecursivePolynomial(2, 9,
+            new RecursivePolynomial(3, 1,
+                new RecursivePolynomial(5, 7,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    IPolynomial expected = new RecursivePolynomial(-8, 3,
+        new RecursivePolynomial(2, 2,
+            new RecursivePolynomial(5, 0,
+                new RecursivePolynomial(2, 9,
+                    new RecursivePolynomial(5, 7,
+                        new RecursivePolynomial()
+                    )
+                )
+            )
+        )
+    );
+    IPolynomial poly3 = poly.add(poly2);
+    assertTrue(poly3.isSame(expected));
+    poly3 = poly2.add(poly);
+    assertTrue(poly3.isSame(expected));
+  }
+
+  @Test
   public void multiply() {
+    poly = new RecursivePolynomial(2, 2,
+        new RecursivePolynomial(2, 0,
+            new RecursivePolynomial()
+        )
+    );
+    IPolynomial poly2 = new RecursivePolynomial(1, 3,
+        new RecursivePolynomial(-3, 1,
+            new RecursivePolynomial()
+        )
+    );
+    IPolynomial result = new RecursivePolynomial(2, 5,
+        new RecursivePolynomial(-4, 3,
+            new RecursivePolynomial(-6, 1,
+                new RecursivePolynomial()
+            )
+        )
+    );
+    assertTrue(result.isSame(poly.multiply(poly2)));
+  }
+
+  @Test
+  public void multiply1() {
+    poly = new RecursivePolynomial(1, 1,
+        new RecursivePolynomial(5, 0,
+            new RecursivePolynomial()
+        )
+    );
+    IPolynomial poly2 = new RecursivePolynomial(1, 1,
+        new RecursivePolynomial(-3, 0,
+            new RecursivePolynomial()
+        )
+    );
+    IPolynomial result = new RecursivePolynomial(1, 2,
+        new RecursivePolynomial(2, 1,
+            new RecursivePolynomial(-15, 0,
+                new RecursivePolynomial()
+            )
+        )
+    );
+    assertTrue(result.isSame(poly2.multiply(poly)));
+  }
+
+  @Test
+  public void multiply2() {
+    poly = new RecursivePolynomial(1, 1,
+        new RecursivePolynomial(5, 0,
+            new RecursivePolynomial(4, 7,
+                new RecursivePolynomial()
+            )
+        )
+    );
+    IPolynomial poly2 = new RecursivePolynomial(1, 1,
+        new RecursivePolynomial(-3, 0,
+            new RecursivePolynomial()
+        )
+    );
+    IPolynomial result = new RecursivePolynomial(4, 8,
+        new RecursivePolynomial(-12, 7,
+            new RecursivePolynomial(1, 2,
+                new RecursivePolynomial(2, 1,
+                    new RecursivePolynomial(-15, 0,
+                        new RecursivePolynomial()
+                    )
+                )
+            )
+        )
+    );
+    assertTrue(result.isSame(poly.multiply(poly2)));
+  }
+
+  @Test
+  public void multiplyWithEmpty() {
+    IPolynomial empty = new RecursivePolynomial();
+    assertTrue(empty.isSame(poly.multiply(empty)));
+    assertTrue(empty.isSame(empty.multiply(poly)));
   }
 
   @Test
   public void toString1() {
-    String expected = "-4x^3 + 2x^2 - 3x + 5";
+    poly = poly.addTerm(1, 4);
+    poly = poly.addTerm(-1, 5);
+    String expected = "-x^5 + x^4 - 4x^3 + 2x^2 - 3x + 5";
     assertEquals(expected, poly.toString());
+  }
+
+  @Test
+  public void toStringPositiveStarts() {
+    poly = new RecursivePolynomial(4, 3,
+        new RecursivePolynomial(2, 9,
+            new RecursivePolynomial(-3, 1,
+                new RecursivePolynomial(5, 7,
+                    new RecursivePolynomial()
+                )
+            )
+        )
+    );
+    String expected = "2x^9 + 5x^7 + 4x^3 - 3x";
+    assertEquals(expected, poly.toString());
+  }
+
+  @Test
+  public void toStringEmptyPoly() {
+    poly = new RecursivePolynomial();
+    assertEquals("", poly.toString());
   }
 }

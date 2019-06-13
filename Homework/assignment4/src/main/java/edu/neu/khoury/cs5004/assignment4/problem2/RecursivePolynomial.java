@@ -2,9 +2,9 @@ package edu.neu.khoury.cs5004.assignment4.problem2;
 
 public class RecursivePolynomial implements IPolynomial {
 
-  private Integer coefficient;
-  private Integer power;
-  private IPolynomial rest;
+  private final Integer coefficient;
+  private final Integer power;
+  private final IPolynomial rest;
 
   /**
    * Constructor for a {@code RecursivePolynomial}.
@@ -20,10 +20,19 @@ public class RecursivePolynomial implements IPolynomial {
     this.rest = rest;
   }
 
+  /*
+   * Next constructor is required in the assignment write up, making the use of an empty
+   * polynomial class more difficult to make work. The write up also mentions only using "one"
+   * implementation.
+   */
+
   /**
    * Empty constructor for {@code RecursivePolynomial}. Creates a zero polynomial (i.e. just zero).
    */
   public RecursivePolynomial() {
+    this.coefficient = null;
+    this.power = null;
+    this.rest = null;
   }
 
   /* ===== Methods ===== */
@@ -31,6 +40,7 @@ public class RecursivePolynomial implements IPolynomial {
   @Override
   public IPolynomial addTerm(Integer coefficient, Integer power) {
     if (coefficient.equals(0)) {
+      // ignore 0 valued
       return this;
     }
     // remove current term with this power if there is one
@@ -44,10 +54,10 @@ public class RecursivePolynomial implements IPolynomial {
     if (isEmpty() || power == null) {
       return this;
     }
-    if (!this.power.equals(power)) {
-      return new RecursivePolynomial(this.coefficient, this.power, rest.removeTerm(power));
+    if (this.power.equals(power)) {
+      return rest.removeTerm(power);
     }
-    return rest.removeTerm(power);
+    return new RecursivePolynomial(this.coefficient, this.power, rest.removeTerm(power));
   }
 
   @Override
@@ -80,6 +90,7 @@ public class RecursivePolynomial implements IPolynomial {
       return false;
     }
     Integer otherCoef = other.getCoefficient(power);
+    // remove this term from other so the polys shrink together
     other = other.removeTerm(power);
     return (otherCoef.equals(coefficient)) && rest.isSame(other);
   }
@@ -101,43 +112,134 @@ public class RecursivePolynomial implements IPolynomial {
     if (isEmpty()) {
       return other;
     }
+    // get new coefficient and remove that power from other so it doesn't end up in the final poly
     Integer newCoeff = coefficient + other.getCoefficient(power);
     other = other.removeTerm(power);
+    // ignore zero values
+    if (newCoeff.equals(0)) {
+      return rest.add(other);
+    }
     return new RecursivePolynomial(newCoeff, power, rest.add(other));
   }
 
   @Override
   public IPolynomial multiply(IPolynomial other) {
-    if (isEmpty()) {
-      return this;
+    if (isEmpty() || other == null) {
+      // "zero" multiplication
+      return new RecursivePolynomial();
     }
     Integer deg = other.getDegree();
+    // For each possible power, add a new term to a polynomial
     IPolynomial poly = new RecursivePolynomial();
     for (int i = 0; i <= deg; i++) {
-      // if other.getCoefficient returns 0 (that power is not in other), the term is ignored
-      poly = poly.addTerm(coefficient * other.getCoefficient(i),
-          power + i);
+      // multiply coefficients in other with this one
+      // add powers in other with this one
+      // if other.getCoefficient returns 0 (that power is not in other),
+      // the term is ignored in addTerm
+      poly = poly.addTerm(coefficient * other.getCoefficient(i), power + i);
     }
     return poly.add(rest.multiply(other));
   }
 
   @Override
   public String toString() {
-    if (isEmpty()) {
+    String result = toStringHelper(this);
+    // result will start with " - " or " + "
+    if (result.startsWith(" - ")) {
+      // remove spaces around minus sign on first term
+      result = "-" + result.substring(3);
+    } else if (result.startsWith(" + ")) {
+      // remove spaces and plus sign on first term
+      result = result.substring(3);
+    }
+    return result;
+  }
+
+  /**
+   * Recursive helper for the toString method.
+   *
+   * @return a string representation of this object
+   */
+  public String toStringHelper(IPolynomial poly) {
+    Integer degree = poly.getDegree();
+    if (degree == -1) {
       return "";
     }
+    // Get highest power term and remove it
+    Integer coEff = poly.getCoefficient(degree);
+    poly = poly.removeTerm(degree);
 
-    String term;
-    if (coefficient >= 0) {
-      term = String.format(" + %d", coefficient);
+    // format the term
+    String result;
+    if (degree > 1) {
+      result = formatPowerTwoOrMore(coEff, degree);
+    } else if (degree == 1) {
+      result = formatPowerIsOne(coEff);
+    } else if (degree == 0) {
+      result = formatPowerIsZero(coEff);
     } else {
-      term = String.format(" - %d", -coefficient);
+      // unexpected, something is wrong!
+      result = "???";
     }
-    if (power > 0) {
-      term += String.format("x^%d", power);
-    }
+    // return the term and the rest of poly (with this term removed)
+    return result + toStringHelper(poly);
+  }
 
-    return term + rest.toString();
+  /**
+   * Formats a term with a power greater than one.
+   *
+   * @param coEff the coefficient
+   * @param power the power (must be two or more)
+   * @return a string of the form "+/- ax^b", where a == coEff and b == power
+   */
+  private String formatPowerTwoOrMore(Integer coEff, Integer power) {
+    String result;
+    if (coEff < -1) {
+      // the coefficient is negative
+      result = String.format(" - %dx^%d", -coEff, power);
+    } else if (coEff > 1) {
+      // the coefficient is positive (no zero terms stored)
+      result = String.format(" + %dx^%d", coEff, power);
+    } else if (coEff == -1) {
+      result = String.format(" - x^%d", power);
+    } else {  // coEff == 1
+      result = String.format(" + x^%d", power);
+    }
+    return result;
+  }
+
+  /**
+   * Formats a term with a power equal to one.
+   *
+   * @param coEff the coefficient
+   * @return a string of the form " +/- ax" where a == coEff
+   */
+  private String formatPowerIsOne(Integer coEff) {
+    String result;
+    if (coEff < -1) {
+      result = " - " + (-coEff) + "x";
+    } else if (coEff > 1) {
+      result = " + " + coEff + "x";
+    } else if (coEff == -1) {
+      result = " - x";
+    } else {
+      result = " + x";
+    }
+    return result;
+  }
+
+  /**
+   * Formats a term with a power equal to zero.
+   *
+   * @param coEff the coefficient
+   * @return a string of the form " +/- a" where a == coEff
+   */
+  private String formatPowerIsZero(Integer coEff) {
+    if (coEff < 0) {
+      return " - " + (-coEff);
+    } else {
+      return " + " + coEff;
+    }
   }
 
   /**
