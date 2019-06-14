@@ -64,9 +64,9 @@ public class Posn {
    */
   @Override
   public String toString() {
-    return "Posn{" +
-        "x=" + x +
-        ", y=" + y +
-        '}';
+    return "Posn{"
+        + "x=" + x
+        + ", y=" + y
+        + '}';
   }
 }
