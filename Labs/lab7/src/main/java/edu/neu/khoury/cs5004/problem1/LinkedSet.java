@@ -1,8 +1,8 @@
 package edu.neu.khoury.cs5004.problem1;
 
 /**
- * A generic set based on an array. This implementation is not very efficient,
- * but I wanted to try something different from our recursive structures.
+ * A generic set based on an array. This implementation is not very efficient, but I wanted to try
+ * something different from our recursive structures.
  *
  * @param <T> the type of the set
  * @author evandouglass
@@ -18,7 +18,7 @@ public class LinkedSet<T> implements Set<T> {
    * @param element the element at this node
    * @param rest the rest of the set
    */
-  public LinkedSet(T element, Set<T> rest){
+  public LinkedSet(T element, Set<T> rest) {
     this.element = element;
     this.rest = rest;
   }
