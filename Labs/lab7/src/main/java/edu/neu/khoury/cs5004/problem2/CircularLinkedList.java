@@ -1,5 +1,7 @@
 package edu.neu.khoury.cs5004.problem2;
 
+import java.util.Objects;
+
 /**
  * An implementation of the Queue ADT using a circular linked
  * list.
@@ -8,8 +10,8 @@ package edu.neu.khoury.cs5004.problem2;
  */
 public class CircularLinkedList<T> implements Queue<T> {
 
-  private Node head;
-  private Node tail;
+  private ListNode head;
+  private ListNode tail;
   private Integer len;
 
   /**
@@ -23,23 +25,51 @@ public class CircularLinkedList<T> implements Queue<T> {
 
   /* ===== Methods ===== */
 
-  /* ===== Getters & Setters ===== */
-
-  /**
-   * Returns the first element in the list as a {@code Node}.
-   *
-   * @return the first element
-   */
-  public Node getHead() {
-    return head;
+  @Override
+  public Boolean isEmpty() {
+    return null;
   }
 
-  /**
-   * Returns the last element in the list as a {@code Node}.
-   *
-   * @return the last element
-   */
-  public Node getTail() {
-    return tail;
+  @Override
+  public void enqueue(T element) {
+
+  }
+
+  @Override
+  public T dequeue() throws EmptyQueueException {
+    return null;
+  }
+
+  @Override
+  public void remove(T element) {
+
+  }
+
+  @Override
+  public Integer size() {
+    return null;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CircularLinkedList<?> that = (CircularLinkedList<?>) o;
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    // TODO: Have to make this traverse the list
+    return Objects.hash(head, tail, len);
+  }
+
+  @Override
+  public String toString() {
+    return null;
   }
 }
