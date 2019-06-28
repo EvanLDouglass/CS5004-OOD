@@ -40,8 +40,8 @@ public interface Queue<T> {
 
   /**
    * Removes the first occurrence of the given element from the {@code Queue} regardless of it's
-   * position. This operation has no effect on an empty {@code Queue}, or one without the
-   * given element.
+   * position. This operation has no effect on an empty {@code Queue}, or one without the given
+   * element.
    *
    * @param element the element to remove.
    */

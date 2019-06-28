@@ -81,11 +81,11 @@ public class CircularLinkedList<T> implements Queue<T> {
    * @return the payload of the only node in the list
    */
   private T dequeueSizeOfOne() {
-    Node<T> node = head;
+    final T payload = head.getPayload();
     head = null;
     tail = null;
     len--;
-    return node.getPayload();
+    return payload;
   }
 
   /**
@@ -234,8 +234,8 @@ public class CircularLinkedList<T> implements Queue<T> {
   }
 
   /**
-   * Helper for toString. Cycles through the list and appends each node's
-   * payload to a {@code StringBuilder} and returns the result.
+   * Helper for toString. Cycles through the list and appends each node's payload to a {@code
+   * StringBuilder} and returns the result.
    *
    * @return a comma separated list of each node's payload, as a string
    */

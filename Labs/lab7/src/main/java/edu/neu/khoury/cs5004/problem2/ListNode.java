@@ -8,6 +8,7 @@ public class ListNode<T> implements Node<T> {
 
   /**
    * Constructor that sets the payload only.
+   *
    * @param payload the payload
    */
   public ListNode(T payload) {
@@ -16,6 +17,7 @@ public class ListNode<T> implements Node<T> {
 
   /**
    * Constructor that sets the payload and the previous and next nodes.
+   *
    * @param payload the payload
    * @param previous the previous node
    * @param next the next node
