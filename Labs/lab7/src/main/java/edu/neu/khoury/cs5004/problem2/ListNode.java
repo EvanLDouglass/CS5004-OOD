@@ -1,7 +1,5 @@
 package edu.neu.khoury.cs5004.problem2;
 
-import java.util.Objects;
-
 public class ListNode<T> implements Node<T> {
 
   private T payload;
@@ -32,31 +30,31 @@ public class ListNode<T> implements Node<T> {
 
   @Override
   public Boolean isFirst() {
-    return previous == null;
-  }
-
-  @Override
-  public Boolean isLast() {
     return next == null;
   }
 
   @Override
-  public Node getNext() {
+  public Boolean isLast() {
+    return previous == null;
+  }
+
+  @Override
+  public Node<T> getNext() {
     return next;
   }
 
   @Override
-  public void setNext(Node node) {
+  public void setNext(Node<T> node) {
     next = node;
   }
 
   @Override
-  public Node getPrevious() {
+  public Node<T> getPrevious() {
     return previous;
   }
 
   @Override
-  public void setPrevious(Node node) {
+  public void setPrevious(Node<T> node) {
     previous = node;
   }
 
@@ -68,5 +66,10 @@ public class ListNode<T> implements Node<T> {
   @Override
   public void setPayload(T payload) {
     this.payload = payload;
+  }
+
+  @Override
+  public String toString() {
+    return "ListNode{" + payload + '}';
   }
 }

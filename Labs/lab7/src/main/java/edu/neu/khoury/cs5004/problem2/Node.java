@@ -26,7 +26,7 @@ public interface Node<T> {
    *
    * @return the next node.
    */
-  Node getNext();
+  Node<T> getNext();
 
   /**
    * Sets the next node to that given.
@@ -40,7 +40,7 @@ public interface Node<T> {
    *
    * @return the previous node
    */
-  Node getPrevious();
+  Node<T> getPrevious();
 
   /**
    * Sets the previous node to that given.

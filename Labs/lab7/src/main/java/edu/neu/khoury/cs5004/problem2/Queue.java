@@ -39,13 +39,13 @@ public interface Queue<T> {
   T dequeue() throws EmptyQueueException;
 
   /**
-   * Removes the given element from the {@code Queue} regardless of it's position. Has no effect on
-   * an empty {@code Queue}.
+   * Removes the first occurrence of the given element from the {@code Queue} regardless of it's
+   * position. This operation has no effect on an empty {@code Queue}, or one without the
+   * given element.
    *
    * @param element the element to remove.
-   * @throws EmptyQueueException if called on an empty list
    */
-  void remove(T element) throws EmptyQueueException;
+  void remove(T element);
 
   /**
    * Returns the number of elements in the {@code Queue}.

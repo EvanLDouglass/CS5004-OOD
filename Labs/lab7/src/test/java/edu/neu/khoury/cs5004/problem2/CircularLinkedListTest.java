@@ -51,13 +51,27 @@ public class CircularLinkedListTest {
   }
 
   @Test
+  public void removeFromOne() {
+    queue.enqueue("test");
+
+    queue.remove("hello");
+    assertEquals(1, (int) queue.size());  // should be same size
+    queue.remove("test");
+    assertEquals(0, (int) queue.size());
+  }
+
+  @Test
   public void removeFirst() throws EmptyQueueException {
     queue.enqueue("test");
     queue.enqueue("hello");
     queue.enqueue("another one");
 
+    queue.remove("not in queue");
+    assertEquals(3, (int) queue.size());  // should be same size
+
     queue.remove("test");
     assertEquals("hello", queue.dequeue());
+    assertEquals("another one", queue.dequeue());
   }
 
   @Test
@@ -89,7 +103,7 @@ public class CircularLinkedListTest {
   }
 
   @Test
-  public void size() throws EmptyQueueException {
+  public void sizeWithRemove() {
     assertEquals(0, (int) queue.size());
 
     // Add elements
@@ -102,6 +116,27 @@ public class CircularLinkedListTest {
 
     // Remove elements
     queue.remove("one more");
+    assertEquals(2, (int) queue.size());
+    queue.remove("hello");
+    assertEquals(1, (int) queue.size());
+    queue.remove("hello");
+    assertEquals(0, (int) queue.size());
+  }
+
+  @Test
+  public void sizeWithDequeue() throws EmptyQueueException {
+    assertEquals(0, (int) queue.size());
+
+    // Add elements
+    queue.enqueue("hello");
+    assertEquals(1, (int) queue.size());
+    queue.enqueue("hello");
+    assertEquals(2, (int) queue.size());
+    queue.enqueue("one more");
+    assertEquals(3, (int) queue.size());
+
+    // Remove elements
+    queue.dequeue();
     assertEquals(2, (int) queue.size());
     queue.dequeue();
     assertEquals(1, (int) queue.size());
@@ -205,7 +240,7 @@ public class CircularLinkedListTest {
 
   @Test
   public void toString1() {
-    String expected = "DoublyLinkedList{test, test, another test, hello}";
+    String expected = "CircularLinkedList{test, test, another test, hello}";
 
     queue.enqueue("test");
     queue.enqueue("test");
@@ -213,5 +248,25 @@ public class CircularLinkedListTest {
     queue.enqueue("hello");
 
     assertEquals(expected, queue.toString());
+  }
+
+  @Test
+  public void getHead() throws EmptyQueueException {
+    queue.enqueue("test");
+    assertEquals("test", ((CircularLinkedList<String>) queue).getHead().getPayload());
+    queue.enqueue("hello");
+    assertEquals("test", ((CircularLinkedList<String>) queue).getHead().getPayload());
+    queue.dequeue();
+    assertEquals("hello", ((CircularLinkedList<String>) queue).getHead().getPayload());
+  }
+
+  @Test
+  public void getTail() throws EmptyQueueException {
+    queue.enqueue("test");
+    assertEquals("test", ((CircularLinkedList<String>) queue).getTail().getPayload());
+    queue.enqueue("hello");
+    assertEquals("hello", ((CircularLinkedList<String>) queue).getTail().getPayload());
+    queue.dequeue();
+    assertEquals("hello", ((CircularLinkedList<String>) queue).getTail().getPayload());
   }
 }

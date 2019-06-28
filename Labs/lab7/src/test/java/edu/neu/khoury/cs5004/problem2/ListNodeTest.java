@@ -21,8 +21,8 @@ public class ListNodeTest {
 
   @Test
   public void isFirstTwoElem() {
-    Node<Double> node2 = new ListNode<>(3.0, node, null);
-    node.setNext(node2);
+    Node<Double> node2 = new ListNode<>(3.0, null, node);
+    node.setPrevious(node2);
     assertTrue(node.isFirst());
     assertFalse(node2.isFirst());
   }
@@ -33,10 +33,10 @@ public class ListNodeTest {
     Node<Double> node3 = new ListNode<>(3.0);
 
     // Set up links
-    node.setNext(node2);
-    node2.setPrevious(node);
-    node2.setNext(node3);
-    node3.setPrevious(node2);
+    node.setPrevious(node2);
+    node2.setNext(node);
+    node2.setPrevious(node3);
+    node3.setNext(node2);
 
     // Tests
     assertTrue(node.isFirst());
@@ -51,8 +51,8 @@ public class ListNodeTest {
 
   @Test
   public void isLastTwoElem() {
-    Node<Double> node2 = new ListNode<>(3.0, node, null);
-    node.setNext(node2);
+    Node<Double> node2 = new ListNode<>(3.0, null, node);
+    node.setPrevious(node2);
     assertFalse(node.isLast());
     assertTrue(node2.isLast());
   }
@@ -63,10 +63,10 @@ public class ListNodeTest {
     Node<Double> node3 = new ListNode<>(3.0);
 
     // Set up links
-    node.setNext(node2);
-    node2.setPrevious(node);
-    node2.setNext(node3);
-    node3.setPrevious(node2);
+    node.setPrevious(node2);
+    node2.setNext(node);
+    node2.setPrevious(node3);
+    node3.setNext(node2);
 
     // Tests
     assertFalse(node.isLast());
@@ -97,5 +97,11 @@ public class ListNodeTest {
 
     node.setPayload(3.1415);
     assertEquals(3.1415, node.getPayload(), 0.0);
+  }
+
+  @Test
+  public void toString1() {
+    String expected = "ListNode{5.0}";
+    assertEquals(expected, node.toString());
   }
 }
