@@ -62,6 +62,9 @@ public class CircularLinkedListTest {
     assertEquals(1, (int) queue.size());  // should be same size
     queue.remove("test");
     assertEquals(0, (int) queue.size());
+    // Should remove from empty without errors
+    queue.remove("test");
+    assertEquals(0, (int) queue.size());
   }
 
   @Test
@@ -161,10 +164,14 @@ public class CircularLinkedListTest {
     assertEquals(queue, queue1);
     assertEquals(queue1, queue);
     assertEquals(queue, queue);
+
+    queue = new CircularLinkedList<>();
+    queue1 = new CircularLinkedList<>();
+    assertEquals(queue1, queue);
   }
 
   @Test
-  public void equalsDiffLength() {
+  public void NotEqualsDiffLength() {
     Queue<String> queue1 = new CircularLinkedList<>();
     queue.enqueue("test1");
     queue1.enqueue("test1");
@@ -252,6 +259,11 @@ public class CircularLinkedListTest {
     queue.enqueue("hello");
 
     assertEquals(expected, queue.toString());
+  }
+
+  @Test
+  public void toStringEmpty() {
+    assertEquals("CircularLinkedList{}", queue.toString());
   }
 
   @Test
