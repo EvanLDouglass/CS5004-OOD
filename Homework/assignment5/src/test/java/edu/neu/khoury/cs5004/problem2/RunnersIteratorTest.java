@@ -1,6 +1,8 @@
 package edu.neu.khoury.cs5004.problem2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import edu.neu.khoury.cs5004.problem1.Runner;
 import java.util.ArrayList;

@@ -50,8 +50,8 @@ public class RunnersIterator implements Iterator<Runner> {
    * @return true if the runner has at least five 5k races, else false
    */
   private Boolean hasFive5k(Runner runner) {
-    final int MIN_5k = 5;
-    return runner.getFiveKRaceTimes().size() >= MIN_5k;
+    final int min5K = 5;
+    return runner.getFiveKRaceTimes().size() >= min5K;
   }
 
   /**
@@ -62,10 +62,10 @@ public class RunnersIterator implements Iterator<Runner> {
    * @return true if the runner qualified, else false
    */
   private Boolean qualifiedForHalfMar(Runner runner) {
-    final double MAX_QUALIFYING_TIME = 10.0;
+    final double maxQualifyingTime = 10.0;
     List<Double> halfMars = runner.getHalfMarathonTimes();
     for (Double time : halfMars) {
-      if (time < MAX_QUALIFYING_TIME) {
+      if (time < maxQualifyingTime) {
         return true;
       }
     }

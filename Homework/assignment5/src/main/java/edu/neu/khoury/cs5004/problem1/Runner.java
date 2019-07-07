@@ -69,7 +69,7 @@ public class Runner implements Comparable<Runner> {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   @Override
   public int compareTo(Runner otherRunner) {
