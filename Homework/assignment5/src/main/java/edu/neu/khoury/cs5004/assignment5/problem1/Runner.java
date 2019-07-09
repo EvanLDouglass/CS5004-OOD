@@ -69,6 +69,9 @@ public class Runner implements Comparable<Runner> {
   }
 
   /**
+   * This {@code compareTo} method does not agree with this class' equals method because it is only
+   * checking average 5k times, and these do not make two {@code Runner}'s equal.
+   *
    * {@inheritDoc}.
    */
   @Override

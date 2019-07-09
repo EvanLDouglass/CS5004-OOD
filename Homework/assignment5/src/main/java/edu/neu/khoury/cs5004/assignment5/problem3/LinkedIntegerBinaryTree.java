@@ -149,7 +149,7 @@ public class LinkedIntegerBinaryTree implements IntegerBinaryTree {
       return false;
     }
 
-    if (node.getVal() == num) {
+    if (node.getVal().equals(num)) {
       return true;
     } else {
       return containsHelper(node.getLeft(), num) || containsHelper(node.getRight(), num);
