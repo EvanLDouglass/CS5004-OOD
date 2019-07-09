@@ -49,11 +49,11 @@ public class LinkedIntegerBinaryTree implements IntegerBinaryTree {
       return counter;
     }
 
-    if (! node.leftIsNull()) {
+    if (!node.leftIsNull()) {
       counter = sizeHelper(node.getLeft(), counter);
     }
 
-    if (! node.rightIsNull()) {
+    if (!node.rightIsNull()) {
       // works because I'm passing in the previously
       // updated counter, which is then updated again,
       // before returning it.
@@ -83,11 +83,11 @@ public class LinkedIntegerBinaryTree implements IntegerBinaryTree {
    * @return the sum of the nodes visited so far.
    */
   private Long sumHelper(Node node, Long sum) {
-    if (! node.leftIsNull()) {
+    if (!node.leftIsNull()) {
       sum = sumHelper(node.getLeft(), sum);
     }
 
-    if (! node.rightIsNull()) {
+    if (!node.rightIsNull()) {
       sum = sumHelper(node.getRight(), sum);
     }
 
@@ -114,11 +114,11 @@ public class LinkedIntegerBinaryTree implements IntegerBinaryTree {
    * @return the sum of the nodes visited so far.
    */
   private Long multiplyHelper(Node node, Long product) {
-    if (! node.leftIsNull()) {
+    if (!node.leftIsNull()) {
       product = multiplyHelper(node.getLeft(), product);
     }
 
-    if (! node.rightIsNull()) {
+    if (!node.rightIsNull()) {
       product = multiplyHelper(node.getRight(), product);
     }
 
