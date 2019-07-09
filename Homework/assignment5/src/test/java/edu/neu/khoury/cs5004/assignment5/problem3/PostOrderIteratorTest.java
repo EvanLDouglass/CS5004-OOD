@@ -36,6 +36,12 @@ public class PostOrderIteratorTest {
   }
 
   @Test
+  public void emptyConstructorTest() {
+    iter = new PostOrderIterator(null);
+    assertFalse(iter.hasNext());
+  }
+
+  @Test
   public void next() {
     Integer[] expectedOrder = new Integer[]{100, 5, 1, 8, 30, 50, 4, 20, 3};
     assertEquals(expectedOrder[0], iter.next());

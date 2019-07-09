@@ -36,6 +36,12 @@ public class PreOrderIteratorTest {
   }
 
   @Test
+  public void emptyConstructorTest() {
+    iter = new PreOrderIterator(null);
+    assertFalse(iter.hasNext());
+  }
+
+  @Test
   public void next() {
     Integer[] expectedOrder = new Integer[]{3, 30, 100, 8, 5, 1, 20, 50, 4};
     assertEquals(expectedOrder[0], iter.next());
