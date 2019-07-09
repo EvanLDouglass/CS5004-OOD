@@ -1,4 +1,4 @@
-package edu.neu.khoury.cs5004.problem3;
+package edu.neu.khoury.cs5004.assignment5.problem3;
 
 /**
  * A Node is a single element in an Integer Binary Tree.

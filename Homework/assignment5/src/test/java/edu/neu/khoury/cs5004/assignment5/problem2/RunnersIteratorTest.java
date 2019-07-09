@@ -1,10 +1,10 @@
-package edu.neu.khoury.cs5004.problem2;
+package edu.neu.khoury.cs5004.assignment5.problem2;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import edu.neu.khoury.cs5004.problem1.Runner;
+import edu.neu.khoury.cs5004.assignment5.problem1.Runner;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package edu.neu.khoury.cs5004.problem3;
+package edu.neu.khoury.cs5004.assignment5.problem3;
 
 /**
  * An iterator that traverses an {@code IntegerBinaryTree} with post-order ordering.

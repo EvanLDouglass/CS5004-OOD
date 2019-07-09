@@ -1,4 +1,4 @@
-package edu.neu.khoury.cs5004.problem1;
+package edu.neu.khoury.cs5004.assignment5.problem1;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,16 +1,14 @@
-package edu.neu.khoury.cs5004.problem3;
+package edu.neu.khoury.cs5004.assignment5.problem3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class InOrderIteratorTest {
+public class PreOrderIteratorTest {
 
-  private InOrderIterator iter;
-  private IntegerBinaryTree tree;
+  private PreOrderIterator iter;
 
   @Before
   public void setUp() throws Exception {
@@ -33,33 +31,13 @@ public class InOrderIteratorTest {
     node3.setLeft(node8);
     node3.setRight(node9);
 
-    tree = new LinkedIntegerBinaryTree(node1);
-    iter = tree.inOrderIter();
-  }
-
-  @Test
-  public void hasNext() {
-    assertTrue(iter.hasNext());
-
-    // True with one node?
-    tree = new LinkedIntegerBinaryTree(new Node(4));
-    iter = tree.inOrderIter();
-    assertTrue(iter.hasNext());
-  }
-
-  @Test
-  public void notHasNext() {
-    tree = new LinkedIntegerBinaryTree();
-    iter = tree.inOrderIter();
-    assertFalse(iter.hasNext());
-
-    iter = new InOrderIterator(null);
-    assertFalse(iter.hasNext());
+    IntegerBinaryTree tree = new LinkedIntegerBinaryTree(node1);
+    iter = tree.preOrderIter();
   }
 
   @Test
   public void next() {
-    Integer[] expectedOrder = new Integer[]{100, 30, 5, 8, 1, 3, 50, 20, 4};
+    Integer[] expectedOrder = new Integer[]{3, 30, 100, 8, 5, 1, 20, 50, 4};
     assertEquals(expectedOrder[0], iter.next());
     assertEquals(expectedOrder[1], iter.next());
     assertEquals(expectedOrder[2], iter.next());
@@ -76,7 +54,7 @@ public class InOrderIteratorTest {
   public void nextOne() {
     Node node1 = new Node(3);
     IntegerBinaryTree tree = new LinkedIntegerBinaryTree(node1);
-    iter = tree.inOrderIter();
+    iter = tree.preOrderIter();
 
     Integer[] expectedOrder = new Integer[]{3};
     assertEquals(expectedOrder[0], iter.next());
@@ -89,9 +67,9 @@ public class InOrderIteratorTest {
     Node node2 = new Node(30);
     node1.setLeft(node2);
     IntegerBinaryTree tree = new LinkedIntegerBinaryTree(node1);
-    iter = tree.inOrderIter();
+    iter = tree.preOrderIter();
 
-    Integer[] expectedOrder = new Integer[]{30, 3};
+    Integer[] expectedOrder = new Integer[]{3, 30};
     assertEquals(expectedOrder[0], iter.next());
     assertEquals(expectedOrder[1], iter.next());
     assertFalse(iter.hasNext());
@@ -103,7 +81,7 @@ public class InOrderIteratorTest {
     Node node2 = new Node(30);
     node1.setRight(node2);
     IntegerBinaryTree tree = new LinkedIntegerBinaryTree(node1);
-    iter = tree.inOrderIter();
+    iter = tree.preOrderIter();
 
     Integer[] expectedOrder = new Integer[]{3, 30};
     assertEquals(expectedOrder[0], iter.next());
@@ -123,9 +101,9 @@ public class InOrderIteratorTest {
     node5.setLeft(node6);
 
     IntegerBinaryTree tree = new LinkedIntegerBinaryTree(node1);
-    iter = tree.inOrderIter();
+    iter = tree.preOrderIter();
 
-    Integer[] expectedOrder = new Integer[]{30, 5, 8, 3};
+    Integer[] expectedOrder = new Integer[]{3, 30, 8, 5};
     assertEquals(expectedOrder[0], iter.next());
     assertEquals(expectedOrder[1], iter.next());
     assertEquals(expectedOrder[2], iter.next());
